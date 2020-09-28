@@ -1,6 +1,6 @@
 # Big Data Week 02
 
-(Dynamo)[https://en.wikipedia.org/wiki/Dynamo_(storage_system)] and Azure Cloud
+[Dynamo](https://en.wikipedia.org/wiki/Dynamo_(storage_system)) and Azure Cloud
 ## Questions
 ### Theory questions
 - Why are abstractions useful?
