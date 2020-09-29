@@ -3,7 +3,7 @@
 ## Questions
 - Importance of Throughput, Capacity and Latency?
 	- Depends on the application, but Capacity can be much higher compared to Throughput, which can be bigger than Latency.
-	**Screenshot from slides**
+	- **Screenshot from slides**
 - What is the difference between object storage and file file storage?
 	- **Object storage:**
 		- Billions of TB files
@@ -23,7 +23,8 @@
 	- We hardly have to search this block, but we have to send the whole block over the network, even if we only need a small part, we also have a higher chance if the block fails,
 	also we use more storage if we can not fill the whole block with data.
 - HDFS architecture:
-	- **Screenshot from slides**
+	
+	![HDFS architecture](../images/03_architecture.png)
 - Why can HDFS be centralized?
 	- Because it can, as there are a lot fewer customers (only one company).
 - What should a NameNode do?
