@@ -3,7 +3,7 @@
 ## Questions
 - Importance of Throughput, Capacity and Latency?
 	- Depends on the application, but Capacity can be much higher compared to Throughput, which can be bigger than Latency.
-	- **Screenshot from slides**
+![Scaling behaviour](../images/03_scaling.PNG)
 - What is the difference between object storage and file file storage?
 	- **Object storage:**
 		- Billions of TB files
@@ -23,8 +23,7 @@
 	- We hardly have to search this block, but we have to send the whole block over the network, even if we only need a small part, we also have a higher chance if the block fails,
 	also we use more storage if we can not fill the whole block with data.
 - HDFS architecture:
-	
-	![HDFS architecture](../images/03_architecture.png)
+![HDFS architecture](../images/03_architecture.PNG)
 - Why can HDFS be centralized?
 	- Because it can, as there are a lot fewer customers (only one company).
 - What should a NameNode do?
@@ -40,5 +39,6 @@
 		- The NameNode responds with the BlockIDs to fetch.
 	- The client then asks the DataNode for the data.
 - What does the NameNode and DataNode talk with each other?
-	- Datanode alsways initiaes connection to namenode and sends heartbeats, namenode answers with block ôperations
-	- every 6 hours there is a block report, to check if all are up.
+	- DataNode always initiates connection to namenode and sends heartbeats
+		- NameNode answers with block operations
+	- every 6 hours there is a block report, to check if all blocks are stored/no block got corrupted
