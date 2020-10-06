@@ -14,7 +14,7 @@
 - CAP theorem
 	- No **C**onsistency: Just return your store/garbage.
 	- No **A**vailabilty: It takes forever.
-	- No **P**artition-tolerance: Give answer from your partition.
+	- No **P**artition-tolerance: There is no partitioning.
 - What is incremential scalability?
 	- It is the scalability behaviour of adding more machines; you should be able to add/remove one(or more) machines at a time without much penalty.
 	
@@ -54,8 +54,10 @@
 	- **Stream level**: Replication inside of the stamp to deal with failed harddrives/bit flip.
 - Why are extents sealed (append only)?
 	- Much easier to give consistency and deliver snapshots at the price of the size of the data.
+- Why is DynamoDB not CAP?
+	- There is no consistency if a partition occured.
 - Why is Azure not CAP?
-	- Ensures consistency and availibilty, but no partition-freedom. 
-	- Never talk to the smaller partition, that works in the real world, but not in the CAP-Theorem.
+	- Ensures partition-freedom and availibilty, but no consistency. 
+	- Don't talk to the smaller partition if it is bad/unreachable and then fix the smaller partition, when it is up-to-date, that works in the real world, but not in the CAP-Theorem.
 - Delete operation in append only?
 	- I am not sure, sorry

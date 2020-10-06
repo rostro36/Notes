@@ -1,0 +1,10 @@
+# Big Data Week 04
+
+## Usage
+- Why should we have a unified syntax?
+	- Readable by all systems, now and in the future.
+- What is well-formedness?
+	- A document is either well-formed or not, a simple boolean.
+	- Examples are JSON and XML.
+## JSON
+
