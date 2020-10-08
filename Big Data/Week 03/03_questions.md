@@ -32,6 +32,8 @@
 	- File namespace +Access control (how the file system looks like)
 	- File to block mapping
 	- Block to location (node)
+- What does a secondary NameNode do?
+	- The secondary NameNode aggregates the log and makes checkpoints. It needs the same amount of RAM as the first one and making new checkpoints is a big job, that gets made about daily.
 - What does the DataNode do?
 	- It stores blocks of data.
 - What does the NameNode and DataNode talk with each other?
@@ -53,9 +55,9 @@
 	For each block:
 		- The client asks the NameNode for DataNodes to store it's data.
 		- The client gets the DataNodes.
-		- The write-pipeline gets built.
-		- The client sends data to the DataNode
-		- The client gets ACKnowledgement from DataNodes.
+		- The write-pipeline gets built by the frist DataNode.
+		- The client sends data through the DataNode pipeline.
+		- The client gets ACKnowledgement from the DataNode, once all have it written.
 		- The client tells the DataNode that the write is finished.
 		- The DataNodes tell the NameNode that they have received the block (while doing the heartbeat).
 	Next block
@@ -63,7 +65,7 @@
 	![Block write](../images/03_write.PNG)
 
 - How is the distance computed?
-	- The distance is the amount of network hops you have to make to the replica and the replica back to you.
+	- The distance is the amount of network hops you have to make to the replica.
 		- 0, if both on same node.
 		- 2, different nodes on same rack
 		- 4, different racks, same datacenter
@@ -74,7 +76,7 @@
 - Where is the filesystem saved?
 	- In RAM of the NameNode.
 	- Can be reconfigured from the block reports, but takes time (30 minutes).
-	- The Standby NameNode (vice NameNodes) saves a log on it's own harddrive, periodically make checkpoints/snapshots.
+	- The Standby/Backup/vice NameNode saves a log on it's own harddrive, the checkpoint NameNode part then periodically makes checkpoints/snapshots by merging log file and state, the Backup NameNode part keeps the filesystem in RAM to easily hot swap.
 - What is the balancing metric?
 	- Percentage of used storage on one node compared to percentage of used storage on whole system.
 - What is the benefit of a higher replication factor?
