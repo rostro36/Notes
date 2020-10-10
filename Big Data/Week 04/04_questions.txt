@@ -3,8 +3,9 @@
 ## Usage
 - Why should we have a unified syntax?
 	- Readable by all systems, now and in the future.
-- What is well-formedness?
+- What is well-formedness in syntax?
 	- A document is either well-formed or not, a simple boolean.
 	- Examples are JSON and XML.
 ## JSON
+## XML
 
