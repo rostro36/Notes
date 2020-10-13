@@ -57,7 +57,41 @@ Unicode character wrapped in quotation marks. Escaping with \, new line and frie
 
 Any UTF-8 (in the basic multilingual plane) character can be represented by \u*(4-digit\*number)*, one can send non-UTF-8 chars (which have more than 4 digits) represented as a twelve-char sequence encoding in the UTF-16 surrogate pair, but if it is seen as two UTF-8 or one UTF-16 is the job of the processor, not the language.
 ## [XML Fundamentals](https://docstore.mik.ua/orelly/xml/xmlnut/ch02_01.htm)
+### General
+XML contains text, never binary data.
 
+XML filenames do not say anything about the content.
+### Element
+<*tag*> *content*</*tag*> defines an element.
+
+<*tag*/> acts exactly the same as an empty element without content.
+
+Tags are case-sensitive.
+### Content Tree
+Content is a tree of elements or a value in itself. The different children don't have to be separated by anything, but they must be in the correct order; you have to close a child in the reverse order as you have opened them.
+
+There is exactly one root element, so you can not have two "children" at the top level.
+### Attributes
+Attributes can be values declared in the tag e.g. *<name first="Alan" last="Turing"/>*, you can use " or '. The order is irrelevant, but therefore each tag can only one attribute with the same name.
+### XML Names
+XML element names and XML attribute names are bundled in the term XML names, which allow pretty much any alphanumeric character + special chars like ü, ç, from punctuation only "-","_" and "." are allowed. But the colon is reserved for namespaces.
+Whitespaces are disallowed. XML names have to start with letters, ideograms(ö,ç etc.) or "_".
+### Entity References
+Content is not allowed to have a "<", you can escape it with "&lt;" the same for "&" and "&amp;" other pre-defined entity references are:
+- "&gt;" for ">"
+- "&quot;" for "
+- "&apos;" for '
+### CDATA Sections
+You can pass literal text using the starting tag "<\!\[CDATA\[\" and the ending tag "]]>", so you do not need to escape characters. The only thing that is not possible to pass is the ending tag.
+### Comments
+Exist and are formed with "<\!--" and end with "-->", they should not include any other "--" and especially "--->" are disallowed for closing. As they are not part of the tree, they can be anywhere in the character data of a document, **not in tags**.
+### Processing Instructions
+Processing Instructions are used to talk to a program, but do not hold acutal data, that should be passed with the file. It is formed with "<?*target*" and ended with "?>", where *target* is the program that should read it, e.g. php.
+The content of the instruction are target dependend and llike comments can occur pretty much anywhere.
+### XML declaration
+The XML declaration looks like a processing instruction with target "xml" and attributes "version", "standalone" and "encoding" and if it exists, has to be placed at the beginning of the document, even before comments.
+
+Standard encoding is UTF-8, but that can be changed in the declaration. The "standalone" attribute tells whether all the necesary information is in the document or it has to fetch some values from an external DTD, the default is "no", there is a DTD needed.
 ## [XML Namespaces](https://docstore.mik.ua/orelly/xml/xmlnut/ch04_01.htm)
 ### Purpose
 - Distinguish between elements and attributes from different vocabularies with the same name.

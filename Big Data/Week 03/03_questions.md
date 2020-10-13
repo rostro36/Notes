@@ -76,7 +76,8 @@
 - Where is the filesystem saved?
 	- In RAM of the NameNode.
 	- Can be reconfigured from the block reports, but takes time (30 minutes).
-	- The Standby/Backup/vice NameNode saves a log on it's own harddrive, the checkpoint NameNode part then periodically makes checkpoints/snapshots by merging log file and state, the Backup NameNode part keeps the filesystem in RAM to easily hot swap.
+	- The Standby/Backup/vice NameNode saves a log on it's own harddrive and keeps one copy in RAM for hot swap of primary NameNodes.
+	- The secondary NameNode stores a checkpoint in persistent storage.
 - What is the balancing metric?
 	- Percentage of used storage on one node compared to percentage of used storage on whole system.
 - What is the benefit of a higher replication factor?

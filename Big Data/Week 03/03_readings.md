@@ -37,14 +37,14 @@ Journal acts as a write-ahead commit log for changes to the file system and the 
 
 To save I/O latency transactions can be batched and then flushed together.
 
-### CheckpointNode
-Periodically combines the existing checkpoint and journal to create a new checkpoint and empty journal.
+### Secondary NameNode
+Periodically combines the existing checkpoint and journal to create a new checkpoint and empty journal, that is then sent to persistent storage.
 
 Good practice is to create a daily checkpoint.
+### CheckpointNode
+Does the same thing as the secondary NameNode, but uploads the new image to the primary NameNode instead of persisten storage.
 
-### BackupNode
-Like a CheckpointNode, but also has a live file system, that is supplied by the NameNode as a journal store.
-
+### BackupNode /StandbyNode
 BackupNode can be seen as a read-only NameNode, that stores system metadata, but no block locations. Kicks in, when the NameNode fails with hardly any downtime.
 
 ### Snapshots
