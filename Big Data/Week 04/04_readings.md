@@ -2,15 +2,12 @@
 
 ## [JSON Standard](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)
 ### JSON General
-JSON is a text syntax that facilitates structured data interchange.
-
-JSON  also  depends  on  Unicode  in  the  hex numbers used in the \u escapement notation.
-
-JSON is agnostic about the representation of numbers, they are saved as human readable.
-
-JSON does not support cyclic graphs, JSON is not optimized for binary data.
-
+JSON is a text syntax that facilitates structured data interchange and depends  on  Unicode  in  the  hex numbers used in the \u escapement notation.
 JSON is programming language independent. Standard only defnines confromance, not how to interpret the text, e.g. if an object is a list or an array.
+
+It is is agnostic about the representation of numbers, they are saved as human readable.
+
+JSON does not support cyclic graphs, also it is not optimized for binary data.
 
 A JSON file consists of JSON text, which forms exactly one JSON value, which can be comprised of objects, arrays, numbers or strings. 
 ### JSON Text
@@ -35,27 +32,25 @@ A JSON value can be one of:
 - array 
 - number 
 - string
-- true
-- false 
-- null
-### Objects
-An object is represented as (*name*/*value*)\* pairs surrounded by a pair of curly bracket tokens. Where a *name* is a string, followed by a single colon, to separate it from the *value*.
-A single comma separates *value* from the next name.
-
-JSON names can be any string, doubled and the ordering is not guaranteed.
-### Arrays
-Place *values* inside of square brackets and separate one *value* from the other by a comma.
-The ordering is again open.
+- literal name token
 ### Numbers
 ![JSON numbers](../images/04_JSON_number.PNG)
-
 
 Only one exponent allowed, only one leading 0 allowed, then dot or e.
 Non- numeric numbers like NaN or Infinity are not allowed.
 ### String
-Unicode character wrapped in quotation marks. Escaping with \, new line and friends are also with \n etc..
+Unicode character wrapped in quotation marks. Escaping "\"",\ with \ before, new line and friends are also with \n etc.. 
 
-Any UTF-8 (in the basic multilingual plane) character can be represented by \u*(4-digit\*number)*, one can send non-UTF-8 chars (which have more than 4 digits) represented as a twelve-char sequence encoding in the UTF-16 surrogate pair, but if it is seen as two UTF-8 or one UTF-16 is the job of the processor, not the language.
+Any UTF-8 (in the basic multilingual plane) character can be represented by \u *(4-digit\*number)*, one can send non-UTF-8 chars (which have more than 4 digits) represented as a twelve-char sequence encoding in the UTF-16 surrogate pair, but if it is seen as two UTF-8 or one UTF-16 is the job of the processor, not the language.
+
+### Objects
+An object is represented as (*name*/*value*)\* pairs surrounded by a pair of curly bracket tokens. Where a *name* is a string, followed by a single colon, to separate it from the *value*.
+A single comma separates *value* from the next name.
+
+JSON names can be any string, doubled and the ordering is not guaranteed, like dicts in Python.
+### Arrays
+Place *values* inside of square brackets and separate one *value* from the other by a comma.
+The ordering is again open.
 ## [XML Fundamentals](https://docstore.mik.ua/orelly/xml/xmlnut/ch02_01.htm)
 ### General
 XML contains text, never binary data.
@@ -74,20 +69,20 @@ There is exactly one root element, so you can not have two "children" at the top
 ### Attributes
 Attributes can be values declared in the tag e.g. *<name first="Alan" last="Turing"/>*, you can use " or '. The order is irrelevant, but therefore each tag can only one attribute with the same name.
 ### XML Names
-XML element names and XML attribute names are bundled in the term XML names, which allow pretty much any alphanumeric character + special chars like ü, ç, from punctuation only "-","_" and "." are allowed. But the colon is reserved for namespaces.
-Whitespaces are disallowed. XML names have to start with letters, ideograms(ö,ç etc.) or "_".
+XML element names and XML attribute names are bundled in the term XML names, which allow pretty much any alphanumeric character plus special chars like ü, ç, from punctuation only "-","\_" and "." are allowed. But the colon is reserved for namespaces.
+Whitespaces are disallowed. XML names have to start with letters, ideograms(ö,ç etc.) or "\_".
 ### Entity References
-Content is not allowed to have a "<", you can escape it with "&lt;" the same for "&" and "&amp;" other pre-defined entity references are:
-- "&gt;" for ">"
-- "&quot;" for "
-- "&apos;" for '
+Content is not allowed to have a "<", you can escape it with "&lt;" the same for "&" and "\&amp;" other pre-defined entity references are:
+- "\&gt;" for ">"
+- "\&quot;" for "
+- "\&apos;" for '
 ### CDATA Sections
 You can pass literal text using the starting tag "<\!\[CDATA\[\" and the ending tag "]]>", so you do not need to escape characters. The only thing that is not possible to pass is the ending tag.
 ### Comments
 Exist and are formed with "<\!--" and end with "-->", they should not include any other "--" and especially "--->" are disallowed for closing. As they are not part of the tree, they can be anywhere in the character data of a document, **not in tags**.
 ### Processing Instructions
-Processing Instructions are used to talk to a program, but do not hold acutal data, that should be passed with the file. It is formed with "<?*target*" and ended with "?>", where *target* is the program that should read it, e.g. php.
-The content of the instruction are target dependend and llike comments can occur pretty much anywhere.
+Processing Instructions are used to talk to a program, but do not hold acutal data, that should be passed with the file. It is formed with "<\?*target*" and ended with "\?>", where *target* is the program that should read it, e.g. php.
+The content of the instruction are target dependend and like comments can occur pretty much anywhere.
 ### XML declaration
 The XML declaration looks like a processing instruction with target "xml" and attributes "version", "standalone" and "encoding" and if it exists, has to be placed at the beginning of the document, even before comments.
 
