@@ -37,3 +37,6 @@ One HFile consists of many 64kB big HBlocks to make it easier to search things.
 	- Table -> Region -> Store -> HFile -> HBlock -> KeyValue
 - Why is there a Write-Ahead Log (HLog)?
 	- MemStore flushes all of it's memory content into a HFile, this means the memory is sorted. Sorting takes time, as a quick measure to safe the operation it is added to the Write-Ahead Log.
+# KeyValue
+# Architecture
+# M-trees
