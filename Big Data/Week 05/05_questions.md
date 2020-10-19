@@ -25,18 +25,23 @@
 - Why can there be a total order in HBase?
 	- HBase supports ACID with locks, as there is exactly one RegionServer per row, this is (easier) possible.
 - What is in a key of a HFile?
+	- (RowID,columnID,version/timestamp)
+	
+![KeyValue](../images/05_keyvalue.PNG)
 - What is in a value of a HFile?
-
-
+	- One HFile consists of many 64kB big *HBlocks* of data to make it easier to search things.
 - Why is there no length for column qualifier?
-	- All others are defines or fixed.
+	- All others are defined or fixed.
 - What is the purpose of the key type in a HFile?
 	- It tells whether a row is (to be) deleted in lazy deletion.
-One HFile consists of many 64kB big HBlocks to make it easier to search things.
 - What is the hierarchy of entities in HBase?
-	- Table -> Region -> Store -> HFile -> HBlock -> KeyValue
+	- Table &rightarrow; Region &rightarrow; Store &rightarrow; HFile &rightarrow; HBlock &rightarrow; KeyValue
+	
+![Architecture](../images/05_layers.PNG)
 - Why is there a Write-Ahead Log (HLog)?
 	- MemStore flushes all of it's memory content into a HFile, this means the memory is sorted. Sorting takes time, as a quick measure to safe the operation it is added to the Write-Ahead Log.
-# KeyValue
-# Architecture
-# M-trees
+- How is data stored on persistent storage?
+	- In Log-structured merge-trees, which double in size for every level, and every level holds at most one node.
+![LSM-tree](../images/05_LSM_tree.PNG)
+- When is data physically deleted?
+	- Data gets deleted when the two leafs merge. If there was a delete operation in one of the nodes, in the merged one, the data is omitted and the previous leafs deleted.

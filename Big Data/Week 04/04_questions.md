@@ -41,7 +41,7 @@
 - Which characters must be escaped in text?
 	- <, &
 - What is the purpose of "<\!\[CDATA\[\"?
-	- You do not have to escape <,&, only the end tag of CDATA.
+	- You do not have to escape <,&, only the end tag of CDATA. The content in CData will be seen as text, no elements in there.
 ### Comments, Processing Instructions, XML declaration
 - What is the "forbidden sequence" of XML-comments?
 	- "--" can only be used to close with -->, else you have escape.
