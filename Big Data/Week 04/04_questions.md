@@ -10,9 +10,9 @@
 - How would you model an empty value in JSON?
 	- Not mention it or "null".
 - What datastructure does a JSON manifest?
-	- A dict.
+	- A dict, without duplicate keys.
 - Can you give a simple JSON document?
-	- {"person":null}
+	- {"person":null} (**double quotes for both key and value!!!**)
 - Is there any syntactic sugar like namespaces, comments, processing instructions in JSON?
 	- No.
 - Which characters have to be escaped in a JSON string?
@@ -41,7 +41,7 @@
 - Which characters must be escaped in text?
 	- <, &
 - What is the purpose of "<\!\[CDATA\[\"?
-	- You do not have to escape <,&, only the end tag of CDATA. The content in CData will be seen as text, no elements in there.
+	- You do not have to escape <,&, only the end tag of CDATA. The content in CDATA will be seen as text, no elements in there.
 ### Comments, Processing Instructions, XML declaration
 - What is the "forbidden sequence" of XML-comments?
 	- "--" can only be used to close with -->, else you have escape.

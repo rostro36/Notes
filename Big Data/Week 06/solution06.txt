@@ -1,0 +1,10 @@
+scan 'wiki', {COLUMNS => 'page:page_title', FILTER => "ValueFilter(=, 'regexstring:\\s\\(disambiguation\\)$')"} => 284342 row(s) in 189.7570 seconds
+
+
+https://stackoverflow.com/questions/44836052/how-to-extend-hbase-command-line-timeout-period/44893871
+scan 'wiki', {COLUMNS => ['author:timestamp', 'page:page_title'], FILTER => "SingleColumnValueFilter ('author', 'timestamp', =, 'substring:2020-') AND SingleColumnValueFilter ('page', 'page_title', =, 'substring:list of ')"} =>
+
+ 9999425              column=author:timestamp, timestamp=1603297662195, value=2020-08-13T16:00:10Z
+ 9999425              column=page:page_title, timestamp=1603297662195, value=List of The Jetsons episodes
+ 9999732              column=author:timestamp, timestamp=1603297662195, value=2020-08-30T09:57:59Z
+ 9999732              column=page:page_title, timestamp=1603297662195, value=List of African-American nonfiction writers
