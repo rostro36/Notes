@@ -1,4 +1,4 @@
-# Big Data Week 05
+# Big Data Week 06
 
 ## [XML Schemas](https://docstore.mik.ua/orelly/xml/xmlnut/ch16_01.htm)
 Schemas can describe complex restrictions on elements and attributes. Multiple schemas can be combined to validate documents that use multiple XML vocabularies.
@@ -26,16 +26,20 @@ The Schemaprocessor also can get hints via the namespace, e.g. the *schemaLocati
 
 ### Basic Building Blocks
 Schema that only allows strings:
-```<?xml version="1.0"?>
+```
+<?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
  <xs:element name="fullName" type="xs:string"/>
- </xs:schema>``` 
+ </xs:schema>
+ ``` 
  
  Then specify the schema with:
- ```<?xml version="1.0"?>
+ ```
+ <?xml version="1.0"?>
 <fullName xmlns:xsi="http://www.w3.org/2001/XMLSchema">
  <xsi:noNamespaceSchemaLocation="address-schema.xsd">Jannik
- </fullName>``` 
+ </fullName>
+ ``` 
 
 xs:schema must be the root of a schema. Direct children of this root are called *global elements* and can be root elements of documents. Same names are finally disallowed, attributes are not elements though.
 
@@ -202,3 +206,41 @@ Not many validators support it.
 To define a structure in the schema put it in the "definitions" object.
 
 To reference it use "$ref": "#/definitions/*name*", this is a copy and paste and the URL is called a JSON-pointer, where # is the root of the file, other files can also be referenced. "$ref" can also be used for recursion.
+
+## [Dremel: Interactive Analysis of Web-Scale Datasets](https://dl.acm.org/doi/10.1145/1953122.1953148)
+
+Dremel is a scalable, interactive ad hoc query system for analysis of read-only nested data by using a serving tree, where each node does some computation.
+
+Workers have different capabilities.
+
+Dremel is in situ, what is decently fast thanks to a common storage layer, like GFS. Often used to analyze MapReduce outputs. SQL-like language. Dremel uses a column-striped storage repesentation.
+
+### Data model
+The data model (*Protocol Buffers*) is based on strongly typed nested records, which in the end looks similar to JSON and are cross-language.
+
+Try to store the columns next to each other to improve retrieval efficiency, what is hard if they are (arbitrarily) nested and/or repeated.
+
+Each column is stores as a set of blocks.
+### Encoding tree position of same type
+The encoding is a delta encoding between two paths, the path from the previous one and the encoding from the new path. The two parameters are *r* for repetition, which tells how many hops are shared and *d* for definition, which tells how big the whole path is. Required fields are not counted. A *d* smaller than the max depth denotes a *NULL*. The encoding preserves the record structure losslessly. *r* gets omitted if *d*=0.
+
+![Dremel table layout](../images/06_dremel_block.PNG)
+
+To recreate a file from storage a FSM is used, depending on the queried fields a different FSM gets used.
+### Query language
+Dremel's language is based on SQL. Each SQL statement takes nested tables and their schemas as input and produces one nested table and its output schema.
+### Query execution
+During execution not used leafs are pruned away.
+
+Queries are executed using serving trees, which enable parallizing query scheduling and aggregation and also provide fault tolerance and balancing.
+
+E.g. the root sends the query to the region servers, that then only give the results from their region. On the way up, the results get merged/aggregated. For *joins* on small tables, the table gets sent with the request. Sometimes, more than one pass is needed and the same query goes down and up multiple times.
+
+Intermediary nodes also keep track of the response times of their children and if need be balance the load. To speed-up drastically, we might be happy with responding already after only 98% of answers have arrived.
+
+### Columnar vs row storage
+For dremel a local experiment was 3x faster with columnar storage compared to row storage (for 1-10 fields). Retrieval time about grows linearly with the number of fields. Record assembly is expensive, doubling the exec time.
+
+For a simple query aggregation query on one field dremel is about 10 as effective as MapReduce. Deeper serving trees are faster (with same amount of leafs), because there is less load to aggregate the incoming results. 
+
+The execution time decreases linearly in the amount of leaf servers.

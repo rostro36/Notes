@@ -1,11 +1,13 @@
-# Big Data Week 05
+# Big Data Week 06
 ## General
 - What is the objective of the lecture?
 	- Going from physical representation (XML/JSON) to a logical representation (data model).
 - What do XML/JSON encode?
 	- They encode trees.
-- XML vs JSON
-	-XML knows it's name (SLIDE)
+- What is the difference between XML and JSON?
+	-XML knows it's name
+	
+![JSON vs XML](../images/06_JSON_vs_XML.PNG)
 - What are the 4 XML (most important) information items?
 	- Document &rightarrow; children, version
 	- Element &rightarrow; local name, children, attributes, parent
