@@ -1,1 +1,0 @@
-$t_{hi}=\theta_\pi$
