@@ -45,3 +45,7 @@
 	- Text vs. binary
 	- Nested vs. flat
 	- Schema optional vs. required
+- What should we do if nothing about attributes is said?
+	- If nothing is written about attributes, they are allowed.
+- What is the default behaviour if an element does not exist?
+	- If the element does not exist, the document is not valid.

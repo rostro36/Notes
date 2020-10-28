@@ -102,6 +102,18 @@ Possible facets:
 
 Facets are applied by using the *xs:restriction* element in the schema and then e.g. *<xs:maxLength value="50"/>* can be used.
 
+```
+ <xs:simpleType name="myInt">
+
+  <xs:restriction base="xs:integer">
+
+      <xs:maxExclusive value="5"/>
+
+  </xs:restriction>
+
+ </xs:simpleType>
+ ```
+
 *<xs:union memberTypes="*first_type second_type*"/>* makes it possible to allow two different datatypes. The *fixed* attribute for facets works like *final* for elements.
 
 The *mixed* attribute of a element controls whether character data may appear between other elements, such that it may look like a html file.

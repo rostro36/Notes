@@ -33,6 +33,9 @@
 	- They are defined in the start tag e.g. <*element* attribute="true"/>.
 - What are the restrictions of attributes?
 	- Attribute names must be QNames and unique in the same tag.
+- Does order matter?
+	- The order of elements matters.
+	- The order of attributes does not matter.
 ### QName, text
 - Which characters are legal for XML element names?
 	- Alphanumeric, special characters, "-","\_" and "."
@@ -55,6 +58,8 @@
 - Where can I put a XML declaration?
 	- Only at the very beginning of the document, even before comments.
 ### XML Namespaces
+- What is the implicit namespace of the root if nothing has been changed?
+	- http://www.w3.org/XML/1998/namespace
 - How can the default namespace be changed?
 	- To change the namespace in the scope of the tag, you have to change the attribute *xmlns*.
 - How are non-default namespaces defined?
