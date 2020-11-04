@@ -5,8 +5,9 @@
 - What do XML/JSON encode?
 	- They encode trees.
 - What is the difference between XML and JSON?
-	-XML knows it's name
-	
+	- XML knows it's name
+- Is a document without a schema valid?
+	- By definition a valid document must have a schema, if it does not have a schema it is neither valid nor invalid.
 ![JSON vs XML](../images/06_JSON_vs_XML.PNG)
 - What are the 4 XML (most important) information items?
 	- Document &rightarrow; children, version

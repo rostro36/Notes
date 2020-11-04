@@ -13,6 +13,8 @@
 	- Reduce task (when a reduce function gets applied to data)
 	- Reduce slot(when a machine does a reduce job)
 	- Machine that has a reduce slot.
+- How long does MapReduce take on a 1000-node cluster?
+	- A few hours, maybe even a day.
 ## Input/Output
 - What is the input for MapReduce?
 	- Keyvalues (*Splits*) of one or many Hfiles or from databases, which are stored in different blocks on different machines.
@@ -40,6 +42,8 @@
 	- The first immeadiate results only depend on one shard (Map). O(1)
 	- The second immeadiate results depend on many other first immeadiate results (Shuffle). O(n^2)
 	- The final results only depend on one of the second immeadiate results (Reduce). O(1)
+- Can we start the next phase after the first results of the previous phase are available?
+	- Hardly, as the next phase depends on the previous phase.
 ## Memory and transmission
 - What are the two roles in MapReduce (version 1)?
 	- JobTracker (master)

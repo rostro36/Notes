@@ -1,0 +1,85 @@
+# Big Data Week 08
+## General
+- What is a slot?
+	- A slot are some computing resources (memory+processor) that can execute jobs.
+- What are the problems of MapReduce?
+	- MapReduce only scales to thousands, not dozens of thousands.
+	- Jobtracker is a single point of failure.
+	- JobTracker has to do two things: schedule and monitoring
+	- The amount of memory is static.
+	- Some resources are idle, because another phase gets executed.
+- What YARN makes different?
+	- It adds another layer of master(*ResourceManager*)-client(*NodeManager*). A *NodeManager** may open a MapReduce JobTracker *container* and asks for more *containers*/slots.
+- What makes YARN better?
+	- Scales to tens of thousands.
+	- It does not keep resources from previous phases or reserve resources way too early.
+	- The *ResourceManager* tracks, not the JobTracker
+	- YARN is fairer, also for SLA-guarantees.
+	- It can more than MapReduce.
+- What is an *ApplicationMaster*?
+	- The head *containter* of an application (e.g. MapReduce), that also wants new storage for it's application. It also does the monitoring and fault tolerance of the application.
+- What does a *ResourceManager* do?
+	- They are the admin entry gate.
+	- It checks the heartbeats of the *NodeManager*s.
+	- It checks the heartbeats of the *ApplicationMaster*s.
+	- They balance and assign new resources demanded by the client or *ApplicationMaster*s.
+	- Authentication of *ApplicationMaster*s and users, to make sure the resources wasted by somebody else to ensure fairness.
+	- Is still not failure resistant.
+- How are slots scheduled?
+	- FIFO
+	- Capacity scheduling, where there are sub-groups that are weighted differently(in proportion to their capacity) and are merged to a bigger queue.
+	- Fair Scheduling
+- What is queue elasticity?
+	- If one user-group does not use it's whole capacity, it can be shared with another user-group.
+- How does the fair scheduler work?
+	- Steady Fair Share: the capacity/weights each user-group has reserved/bought
+	- Current Share: Current usage
+	- Delta: Current-Steady Fair
+- What is the difference between instantaneous fair share vs. steady fair share?
+	- Instantaneous fair share does exclude empty queues and shares the remaining resources according to steady fair share.
+- What is preemption?
+	- Cut off a job, after it has taken too long.
+- How does dominant rescource fairness work?
+	- If there are multiple resources (e.g. memory and cores) categorize each sub-group by it's dominant resource.
+			- The dominant resource is the one with the higher percentage need of the whole cluster.
+	- The final sharing then has to be normalized by the sum of dominant resources.
+	- **Another way** to look at it is that with that we entangle cpu percantage with memory percentage and use this resource then.
+- What are the assumptions made by the dominant resource fairness on the hardware? 
+	- It assumes that the machines are balanced, the memory has to be proportional to the CPU for each and every machine inside the cluster. The amount of CPUs may change, but the proportion has to stay.
+- Why is it possible to execute more than 100% of the cluster alocated with dominant resource fairness?
+	- Dominant resource fairness first applies the 100% resource tokens and afterwards it sees that not everything is used, because each token might have a different dominant resource. So even more tokens can be packed.
+- How does dominant resource fairness allocated?
+	- Computing one small block and repeating it for the whole cluster. The last one has to be broken up and accounted for with the *Delta*.
+
+- What makes Spark different compared to MapReduce?
+	- There is no static pipeline of Map-Shuffle-Reduce, but the much more open framework of Spark's DAG.
+- How can Spark be seen as a DAG?
+	- The DAG shows the dataflow, the sources are the DataNodes and the sinks are the cllients.
+- What is a RDD?
+	- It is a Resilient Distributed Dataset, the "data format" of Spark, a big, partitioned collection.
+- What is the lifecycle of an RDD?
+	- **Creation:** Taken from the filesystem (local, S3, HDFS..)
+	- **Transformation:** Transform RDD to another RDD (e.g. MapReduce on a RDD)
+	- **Action:** Save the final output (not an RDD), this triggers all the computations before, because the previous computation were lazy.
+- What are some of the one-to-one transformations?
+	- Filter: Depending on the condition, forward the RDD or throw it away.
+	- Map: Apply a function to an RDD and output another RDD (one-to-one).
+	- FlatMap: Like Map, but flatten the output, as one function may have multiple outputs (one-to-many).
+	- Distinct: Check for equality and only output the distinct ones (Deduplication).
+	- Sample: Seed and fraction from the whole RDD.
+- What are some many-to-one transformations?
+	- Union: Merge two RDDs
+	- Intersection (Join): Take the intersection of two RDDs
+	- Subtract: Only keep values which are not in another RDD
+- What is a many-to-many transformation?
+	- Cartesian product
+- What are some actions?
+	- Collect: Take all the output of the previous RDDs (will be a list, not an RDD)
+	- Count: Amount of output, not the value in there.
+	- Count by value: Counts all the duplicates, output will be a dict of distinct values and their count.
+	- Take: Only collect the first few.
+	- Top: Only collect the top values.
+	- TakeSample: Take a **random** sample of outputs. 
+	- Reduce: Apply a reduce function to the previous RDD.
+- What is the workflow of a Spark job?
+	- The user builds the pipeline of transformations, but requesting the action then triggers the execution of that pipeline.
