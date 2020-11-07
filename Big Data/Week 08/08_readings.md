@@ -119,3 +119,85 @@ Spark can be 20-40x faster than Hadoop, which is fast enough to be interactive f
 The more the data gets reused, the higher is the speedup, without reuse, the speedup compared to Hadoop is only very small and comes from having a lighter setup and dealing less with HDFS and not having to do conversion from/to HDFS to use them in the JVM. Spark scales best with more machines compared to Hadoop and can deal with little memory.
 
 Also node recovery is much faster.
+
+## [Apache Hadoop YARN](https://www.cse.ust.hk/~weiwa/teaching/Fall15-COMP6611B/reading_list/YARN.pdf)
+### General
+YARN works on the *platform* layer, giving resources to the *framework* layer, which does the computations, scheduling and also handles fault-tolerance. There is pretty much no assumption about the *framework* layer. This distinction makes YARN a better scaler, gives programming model flexibility and enables running different versions.
+
+YARN can:
+- MapReduce (Pig, Hive, Oozie)
+- Tez
+- Spark
+- Dryad (LINQ)
+- Giraph
+- Storm
+- REEF meta-framework
+- Hoya (dynamic HBase on demand)
+### Requirements
+- Scalability to more than a thousand of nodes.
+- Multi-tenancy to allow different users.
+- Serviceablility to make sure updates and upgrades could be tested, while the old version still could be used by the user.
+- Locality awareness to limit data transmit over the network.
+- High Cluster Utilization to get the most compute out of the cluster, this means make sure idle nodes return soon and safely (e.g. Mapper nodes when only the Reduce operation is left) and  limitting the allocation phase of the cluster, which also results in lower latencies.
+- Reliability/Availability, which means there should not be a single point of failure and no master, that has to do a lot more than other nodes.
+- Secure and auditable operation, so that new users can not see all information.
+- Support for Programmin Model Diversity so that not only MapReduce jobs can be used, which were (ab)used before.
+- Flexible Resource Model to make sure the cluster overall has a good mix of latency(many slots wait) and throughput(many slots work).
+- Backward compability to Hadoop MapReduce as rewriting everything would be too tedious.
+
+![YARN architecture](../images/08_YARN_overview.PNG)
+### ResourceManager (RM)
+There is one RM per cluster with a global view that:
+- tracks resource usage
+- node liveness
+- enforces allocation invariants (fairness, capacity, locality)
+- arbitrates contention among tenants
+
+The RM allocates *containers* (individual resources on a particular node) from the (discertized) continuum of resources in response to successfull *ResourceRequests* from applications/AMs and checks up on those containers by taking heartbeats from NodeManagers.
+
+AMs codify a *ResourceRequest* to the RM consisting of:
+- number of containers
+- resources per container
+- locality preferences
+- priority of requests within the app
+
+ResourceRequests are publically submitted and persisted by the RM and are validated against credentials before going to the scheduler (in the RM). Once the scheduler has enough resources to run the job, it starts (allocate a container for the AM). 
+
+Eventhough RMs are a single point of failure, the publicness of the ResourceRequests (which get persisted) make it possible for the RMs to quickly get back. Once the RM is back, it kills everything and starts all AMs new, but most of them are fault-tolerant and can start from checkpoints.
+
+RMs can claim back resources from AMs.
+
+### ApplicationMaster (AM)
+The AM is itself a container and can be pretty much any programming model, that exists for each app
+- coordinates the logical plan of a job
+- dynamically requests resources with heartbeats to the RM
+- realizes this plan with the resources it received and tries to optimize this. 
+- coordinates the execution around faults and stragglers. The fault information it gets from RM or NM and straggler information it has to find itself.
+
+The process spawned is not bound to the request but to the container lease.
+
+### NodeManager (NM)
+The NM is the head of the computation node and has to:
+- report the state of his node to the RM
+- report the state of the jobs running on the node to the RM
+- kill containers if the RM or AM direct it to.
+- realize *container launch context* (CLC) to local disk if it has the correct security tokens, the *CLC* encompasses 
+	- environment variables
+	- dependencies
+	- security tokens
+	- payloads for the NM services (mostly monitoring)
+	- command to create the process
+
+If there are no heartbeats from the NM to the RM, the RM will notify the other AMs that all tasks on this node are killed.
+
+### YARN applications
+A YARN app should be able to:
+- submit the app by passing a CLC for the AM to the RM.
+- send heartbeats from the AM to the RM.
+- construct CLCs with the leases from the RM and also release the leases when the task is done.
+- clean up the AM after it finished.
+
+### Experiments
+YARN processes around 500'000 jobs daily on 350 PB underlying storage. Thanks to YARN task throughput could be increased form 4 million Hadoop tasks to about 10 million YARN tasks, where HDFS NameNodes seem to bottleneck.
+
+YARN works better with longer jobs, as resources can be better freed, because there is no static split between map and reduce slots anymore (preemption might even make this even more effective), and YARN is more adaptive, because the lighter RM has more capacity to react to more frequent heartbeats with demands. For smaller jobs and smaller clusters, the performance of YARN is compatible with Hadoop.   

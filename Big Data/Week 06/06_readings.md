@@ -236,6 +236,10 @@ Each column is stores as a set of blocks.
 ### Encoding tree position of same type
 The encoding is a delta encoding between two paths, the path from the previous one and the encoding from the new path. The two parameters are *r* for repetition, which tells how many hops are shared and *d* for definition, which tells how big the whole path is. Required fields are not counted. A *d* smaller than the max depth denotes a *NULL*. The encoding preserves the record structure losslessly. *r* gets omitted if *d*=0.
 
+We differentiate between the repeated and non-repeated fields in terms of how we keep track of the repetition levels.
+1. For repeated (e.g., Links.Forward), the repetition level denotes the level of its parent field.
+
+2. For non-repeated (e.g., Name.Language.Code), the repetition level denotes the level of the "recently repeated" element. 
 ![Dremel table layout](../images/06_dremel_block.PNG)
 
 To recreate a file from storage a FSM is used, depending on the queried fields a different FSM gets used.
