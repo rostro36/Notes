@@ -44,13 +44,15 @@
 			- The dominant resource is the one with the higher percentage need of the whole cluster.
 	- The final sharing then has to be normalized by the sum of dominant resources.
 	- **Another way** to look at it is that with that we entangle cpu percantage with memory percentage and use this resource then.
+- How are the slots allocated?
+	- Each container has the size of the % of dominant resources needed by the user.
+	- The sum of the size of the containers are proportional to the weights.
 - What are the assumptions made by the dominant resource fairness on the hardware? 
 	- It assumes that the machines are balanced, the memory has to be proportional to the CPU for each and every machine inside the cluster. The amount of CPUs may change, but the proportion has to stay.
 - Why is it possible to execute more than 100% of the cluster alocated with dominant resource fairness?
 	- Dominant resource fairness first applies the 100% resource tokens and afterwards it sees that not everything is used, because each token might have a different dominant resource. So even more tokens can be packed.
 - How does dominant resource fairness allocated?
 	- Computing one small block and repeating it for the whole cluster. The last one has to be broken up and accounted for with the *Delta*.
-
 - What makes Spark different compared to MapReduce?
 	- There is no static pipeline of Map-Shuffle-Reduce, but the much more open framework of Spark's DAG.
 - How can Spark be seen as a DAG?

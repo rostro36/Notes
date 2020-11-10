@@ -1,0 +1,28 @@
+# Big Data Week 09
+## General
+- What is the differenc between *top*, *take* and *takeSample*?
+	- *top* takes the last samples, *take* takes the first samples and *takeSample* takes randomly distributed samples.
+- What is the unit of work for parallel execution in Spark?
+	- Each partition (by default exactly one HDFS block) creates a task to run in parallel.
+- Who executes tasks?
+	- Containers/slots (cores and memory of a node/machine)
+- How can data locality be used by a framework?
+	- The same node that computed the intermediate results also progresses with downstream tasks, like that, the data does not have to be transferred around.
+- How is a *narrow dependency* defined?
+	- A sequence of *transformations* that does not depend on other partitions.
+- How is a *wide dependeny* defined?
+	- It is a shuffle, the next partition is dependent on multiple intermediate partitions.
+- When does a *stage* end?
+	- At the input, output or a *wide dependency*.
+- Can one task of stage 2 run, when another of stage 1 is still running?
+	- No.
+- How can intermediate be re-used?
+	- Using the *persist* keyword in Spark one can persist some RDDs in memory.
+- How can a *wide dependency* be avoided?
+	- For each job, one might partition the data beforehand, such that one job is only related to one partition.
+- What are dataframes?
+	- Dataframes are fixed length, stored columnarly, "0NF-tables", created from a SQL query and then transformed into RDDs. 
+- What are the benefits of dataframes?
+	- Uses a lot less memory, can be created with SQL.
+- When the choice is open, should we use RDD transformations or Dataframes transformations?
+	- Dataframe transformations are preferred, because Spark can optimize them better, as they are not a black-box, but SQL, which is often also easier to write.
