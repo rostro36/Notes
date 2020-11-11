@@ -28,13 +28,13 @@
 - How are slots scheduled?
 	- FIFO
 	- Capacity scheduling, where there are sub-groups that are weighted differently(in proportion to their capacity) and are merged to a bigger queue.
-	- Fair Scheduling
+	- Fair Scheduling, llike capacity scheduling, but there is neither user nor weights.
 - What is queue elasticity?
 	- If one user-group does not use it's whole capacity, it can be shared with another user-group.
 - How does the fair scheduler work?
 	- Steady Fair Share: the capacity/weights each user-group has reserved/bought
 	- Current Share: Current usage
-	- Delta: Current-Steady Fair
+	- Delta: Current-Steady Fairshare
 - What is the difference between instantaneous fair share vs. steady fair share?
 	- Instantaneous fair share does exclude empty queues and shares the remaining resources according to steady fair share.
 - What is preemption?

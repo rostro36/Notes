@@ -26,3 +26,30 @@
 	- Uses a lot less memory, can be created with SQL.
 - When the choice is open, should we use RDD transformations or Dataframes transformations?
 	- Dataframe transformations are preferred, because Spark can optimize them better, as they are not a black-box, but SQL, which is often also easier to write.
+- What is the difference in creation of a schema between a RDBMS and Spark?
+	- RDBMS have to define a schema and import data for the table, Spark reads directly from the data.
+- What is the functionality of *explode(array)* in SparkSQL?
+	- For each entry in the array, a new row with only that entry is added.
+- How does SparkSQL deal with objects/dicts?
+	- One can address objects/dicts with ".".
+- How does SparkSQL deal with data heterogenity?
+	- If there is no single type that SparkSQL can infer, it resorts to string and leaves the handling of the string representations to the user.
+- What are the (usual) sources of bottlenecks?
+	- Memory, CPU, disk I/O, network I/O
+- What is the bottleneck MapReduce solves?
+	- Disk I/O, with more disks.
+- What is latency?
+	- The time until the first result.
+- What is throughput?
+	- The amount of operations/mega bytes per second.
+- What is response time?
+	- It is the time until the results; the last operation= latency+transfer\**operations*
+- How is speedup defined?
+	- old latency/new latency
+- What is the formula of Amdahl's law?
+	- Speedup=1/(1-p+p/s), where *p* is the parallelizable part and *s* is the amount of parallel workers.
+- What is Gustafson's law?
+	- Speedup=1-p+sp
+- When is Amdahls law used and when Gustafsons law?
+	- Amdahls law holds for constant problem size.
+	- Gustafsons law holds for constant computing power.
