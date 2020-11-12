@@ -41,5 +41,26 @@ Nodes in the semantic graph can be onw of noun phrases (which can be typed), ent
 Edges represent a similarity measure between two nodes, the edges can be one of:
 - Noun phrase- entity edge: which tells how likely the noun phrases is correctly mapped to that entity. This measure is based on the target KB's links of the entity with the same content as the noun to the other entity. (Good for disambiguation)
 - Relation phrase- predicate edge: which tells how likely the relation is correctly mapped to that predicate. This can come from pattern repositories such as [PATTY](https://www.aclweb.org/anthology/D12-1104.pdf).
-# Entity- entity edge
-- Entity- entity edge: 
+- Entity- entity edge: pairwise relatedness between two entitites. These edges only exist between entity nodes connected to different noun phrase nodes to make sure there is no problem with same name of different entities. Relatedness is measured by the amount of shared predicates and objects weighted with IDF. p(entity_i, entity_j)=(sum over all shared objects weigth(predicate)\* weight(object))/(sum over all shared objects weight(predicate)
+- Predicate- predicate edge: exactly the same as entity- entity edge, but with predicates. The weighting stays exactly the same.
+- Entity- predicate edge: IDF weight of the predicate, when there exists a tuple with the entity and the predicate in them, both in the new tuples and the existing KB, else it is 0.
+## Graph densification & linking
+Map each noun (of the new tuple) exactly one entity (in the KB) and each predicate (of the new tuple) exactly one relation (in the KB). A good linking results in a dense graph.
+
+The measure to densify is the minimal weighted degree of a node, as the average can be lifted by some heavy nodes, which do not help density enough.
+
+The dense subgraph problem is NP-hard and tries to find a subgraph that:
+- is connected
+- contains all nouns and predicates
+- is a semantic graph as described above
+- maximizes the minimal weighted degree for densification. (The minima is used instead of the average, as the average can be lifted by heavy nodes.)
+
+The greedy O(|V|) algorithm starts with the whole graph and tries to throw out the node with the smallest degree and finishes, when the lowest vertice can not be thrown out without breaking the rules, but it needs a post-processing step that creates new entities if the degree at an old entity (except for noun phrase- entity edges) is below a threshold, then the connected noun phrases will be new entities.
+
+To deal with bigger documents the greedy algorithm can be iteratively\* run on smaller subsets of the document (O(|subsets|\*|V|) and gives slightly worse results) or only append edges where there exist a sentence where two vertices occur in the same sentence (O(|nouns|^2)). Both variants perform much better and faster than the normal algorithm on large document.
+## Experiments
+There are some already existing baselines and for some other datasets manual annotation was done. Many tools are only optimized on small texts with less than 30 words.
+
+KBPerl shines on longer documents, especially if they have a lot of declarative sentences, as questions lower the precision. High recall is prioritized over precision. relation linking is good compared to competitors.
+
+MinIE is the best extractor because it provides more compact extractions, which leads to high recall, but the overall performance is not too determined by the Open IE tool, because post-processing was done on them in KBPerl.
