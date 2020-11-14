@@ -15,14 +15,14 @@
 	- No **C**onsistency: Just return your store/garbage.
 	- No **A**vailabilty: It takes forever.
 	- No **P**artition-tolerance: There is no partitioning.
-- What is incremential scalability?
+- What is incremental scalability?
 	- It is the scalability behaviour of adding more machines; you should be able to add/remove one(or more) machines at a time without much penalty.
 	
-- Symmetry vs. Heterogenity?
+- Symmetry vs. Heterogeneity?
 	- both if possible
 	- Symmetry means every system has the same responsibilities; there is no clear master.
-	- Heterogenity allows that servers have different CPUs/hardware, but still in the same ballpark (e.g. 8GB vs 16 GB, not 4 KB). They have more/less load according to their exact hardware.
-	- Nodes are symmetric in responsibilities but heterogenous in loads.
+	- Heterogeneity allows that servers have different CPUs/hardware, but still in the same ballpark (e.g. 8GB vs 16 GB, not 4 KB). They have more/less load according to their exact hardware.
+	- Nodes are symmetric in responsibilities but heterogeneous in loads.
 	
 - R+W>N
 	- **N** amount of replicates in the system. 
@@ -38,26 +38,26 @@
 	- Easier to distribute/balance across nodes.
 	- Counter randomness a bit.
 	
-- Why do we need a vectorclock instead of timestamps?
+- Why do we need a vector-clock instead of timestamps?
 	- Ensure consistency.
 		- Imagine a scenario with N=2, R=2, W=1. Client1 adds "hi" to node 1 and afterwards Client2 adds "bye" to node 2,
 			without a synchronisation between the two nodes in between. If a client now reads it gets the two versions and can not tell if "bye" deleted "hi" first or just the scenario as above.
-		- With vectorclocks this can be resolved, because the reading client sees, that they have not updated with each other; they are forks of each other.
+		- With vector-clocks this can be resolved, because the reading client sees, that they have not updated with each other; they are forks of each other.
 
 - Why is a Merkle hash-tree used to check if two nodes have the same items?
-	- The Merkle tree allows for easier checks of the whole ring. The leafs are one keyrange each and each parent is the hash of its children;
+	- The Merkle tree allows for easier checks of the whole ring. The leafs are one key-range each and each parent is the hash of its children;
 		like that a node only has to check the hashes it got from the sibling up to the top, instead of hashing other leafs.
-	- Like this it is easier to check if both copies of a keyrange have the same items.
+	- Like this it is easier to check if both copies of a key-range have the same items.
 	
 - What are the two layers of replication of Azure? What problems do they solve?
 	- **Partition level**: Replication across stamps (in different datacenters) e.g. a power outage. Does not understand extents.
-	- **Stream level**: Replication inside of the stamp to deal with failed harddrives/bit flip.
+	- **Stream level**: Replication inside of the stamp to deal with failed hard-drives/bit flip.
 - Why are extents sealed (append only)?
 	- Much easier to give consistency and deliver snapshots at the price of the size of the data.
 - Why is DynamoDB not CAP?
-	- There is no consistency if a partition occured.
+	- There is no consistency if a partition occurred.
 - Why is Azure not CAP?
-	- Ensures partition-freedom and availibilty, but no consistency. 
+	- Ensures partition-freedom and availability, but no consistency. 
 	- Don't talk to the smaller partition if it is bad/unreachable and then fix the smaller partition, when it is up-to-date, that works in the real world, but not in the CAP-Theorem.
 - Delete operation in append only?
 	- I am not sure, sorry

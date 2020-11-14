@@ -3,9 +3,9 @@
 ## Introduction
 Google is the most used fact-checking tool.
 
-Different types of quereis often return different types of results (e.g. tweets vs. news articles), these can have different qualities.
+Different types of queries often return different types of results (e.g. tweets vs. news articles), these can have different qualities.
 
-Snippets are summarizations of webpages shown in grey-ish on Google and can influence people without them clicking on the adjacent link.
+Snippets are summaries of webpages shown in grey-ish on Google and can influence people without them clicking on the adjacent link.
 
 It is suspected that Google did not engineer this, but the authors of the articles use partisan wording in response to speeches from politicians.
 
@@ -16,7 +16,7 @@ Different parties use different words *cues* for the same entity.
 
 ## Dataset and Methodology
 ### Partisan Clues
-Partisan cues are modeled as unigrams as bigrams and are derived much like by [Gentzkow and Shapiro](https://web.stanford.edu/~gentzkow/research/biasmeas.pdf).
+Partisan cues are modelled as uni-grams as bigrams and are derived much like by [Gentzkow and Shapiro](https://web.stanford.edu/~gentzkow/research/biasmeas.pdf).
 Which give each n-gram a partisanship based on their frequency they have been used by the politicians of a party. Instead of speeches directly they use Vote Smart.
 
 Old documents pollute the dataset, as those may not be relevant for the party and or the search engine. Cleaning and Tokenization with NLTK, discard too few used.
@@ -26,7 +26,7 @@ Partisanship(phrase) = (Proba_rep(phrase)-Proba_dem(phrase))/(Prob_rep(phrase)+P
 The final histogram is rather well balanced.
 
 ### Obtaining SERPs
-Query for US Politicians and partisan bigrams from the lexicon and their auto-completes. Some bigrams had to be completed/discarded by labelers.
+Query for US Politicians and partisan bigrams from the lexicon and their auto-completes. Some bigrams had to be completed/discarded by labellers.
 
 The non-image/maps/google links were followed and the text between the <page>-tags was collected.
 
@@ -42,9 +42,9 @@ Longer text is more evened out, compared to SERPs, as they have more n-grams. Sp
 
 The summarizer prioritizes the beginning of documents, where partisan clues are more concentrated. Clustered queries by topic (made by hand by them) to show results. Give bar-charts for queries based in cluster + polarity.
 
-Summarization performs differently based on the site they want to summarize. Visual meta-data makes no difference on the polarizing behavior of the SERP, but invisible (e.g.description, image text) makes a difference in that the SERPs are now less amplifying.
+Summarization performs differently based on the site they want to summarize. Visual meta-data makes no difference on the polarizing behaviour of the SERP, but invisible (e.g.description, image text) makes a difference in that the SERPs are now less amplifying.
 
 ## Conclusion
 Summarization makes an impact on the bias of texts and it should be tested or made more transparent by Google.
 
-The samples do not necessarily allign with other measurements of the websites slant. Also the score for partisanship is only a (subjective) model and not undiscussably set in stone.
+The samples do not necessarily align with other measurements of the websites slant. Also the score for partisanship is only a (subjective) model and not undiscussable set in stone.

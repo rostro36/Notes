@@ -1,7 +1,7 @@
 # Big Data Week 05
 
 ## General
-- What are the disadvanteges of RDBMS?
+- What are the disadvantages of RDBMS?
 	- They are hard to set up and have high maintenance cost if you scale them up(out).
 - What is wide column storage?
 	- It stores some columns together after another and not one whole row after another.
@@ -42,7 +42,7 @@
 - Why does HBase not do redundancy?
 	- It is built on top of HDFS, which already does redundancy.
 - What does the HMaster do?
-	- It is simlar to the NameNode, it keeps track of the tables and the column families. Additionally it balances the ranges to the RegionServers.
+	- It is similar to the NameNode, it keeps track of the tables and the column families. Additionally it balances the ranges to the RegionServers.
 - Why is there a Write-Ahead Log (HLog)?
 	- MemStore flushes all of it's memory content into a HFile, this means the memory is sorted. Sorting takes time, as a quick measure to safe the operation it is added to the Write-Ahead Log.
 - How is data stored on persistent storage?
@@ -50,6 +50,6 @@
 ![LSM-tree](../images/05_LSM_tree.PNG)
 ## [Bloom filter](https://de.wikipedia.org/wiki/Bloomfilter)
 - Where are Bloom filters used?
-	- In the Hfile index, to check whether a key is in the file.
+	- In the HFile index, to check whether a key is in the file.
 - What is the accuracy property of Bloom filters?
 	- Bloom filter give no false negatives, but can give false positives.

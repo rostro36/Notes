@@ -9,21 +9,21 @@
 ## JSON
 - How would you model an empty value in JSON?
 	- Not mention it or "null".
-- What datastructure does a JSON manifest?
+- What data-structure does a JSON manifest?
 	- A dict, without duplicate keys.
 - Can you give a simple JSON document?
 	- {"person":null} (**double quotes for both key and value!!!**)
 - Is there any syntactic sugar like namespaces, comments, processing instructions in JSON?
 	- No.
 - Which characters have to be escaped in a JSON string?
-	- Special characters in UTF-16, ", \ and whitespace characters.
+	- Special characters in UTF-16, ", \ and white-space characters.
 - What are the possible JSON values?
 	- Object, array, number, string, boolean, null
 ## XML
 ### General
 - How would you model an empty element in XML?
 	- With <*element* />
-- What datastructure does a XML manifest?
+- What data-structure does a XML manifest?
 	- A tree.
 - Can you give a simple XML document?
 	- <person/>

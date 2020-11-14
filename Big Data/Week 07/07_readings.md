@@ -3,7 +3,7 @@
 ## HBase - The Definitive Guide - MapReduce Integration
 MapReduce processes terabytes of data in a scalable way, as it scales linearly with the added systems to it.
 
-The first step is splitting the data which then can get processed parallely by different cores.
+The first step is splitting the data which then can get processed parallelly by different cores.
 ### Classes
 (Table-)*InputFormat* splits the data in splits and defines *key* and *value* objects.
 
@@ -37,7 +37,7 @@ The intermediate values are supplied to the reduce machine via an iterator to ma
 - map: (k1,v1) &rightarrow; list(k2,v2)
 - reduce: (k2, list(v2)) &rightarrow; list(v2)
 ### Implemenatation
-Input gets partitioned into *M* splits, where up to *M* cores can process them in parallell.
+Input gets partitioned into *M* splits, where up to *M* cores can process them in parallel.
 
 Afterwards the intermediate values are split to *R* parts, e.g. default is using hash(key)%*R*, but others can be supplied, and sent to the reducing machines.
 
@@ -47,13 +47,13 @@ The master assigns tasks to the workers.
 
 The mapping machines keep the intermediate key/value pairs in memory until they have to be written back to local disk, partitioned into the *R* regions, so that they can be fetched by the reducing machines after they are given the task by the master and also asked the master for the location of those intermediate splits. The reducing machine has to sort the splits again and apply the reduce function per key.
 
-In the end each of the *R* intemediary splits makes an output file.
+In the end each of the *R* intermediary splits makes an output file.
 
 Each of the file have a final atomic message they can send to signal that it is completed.
 
 The result of MapReduce correspond to *some* sequential execution of all those steps, but we don't know which one.
 
-MapReduce is executed on the same machines that host the data, so the data does not have to be transfered around.
+MapReduce is executed on the same machines that host the data, so the data does not have to be transferred around.
 
 Bigger *M*, *R* make it easier to balance the load and a better checkpoint when a worker fails, but gives more pieces the master has to keep track of and gives more output files and files that have to be transissioned.
 
@@ -77,14 +77,14 @@ Stragglers are machines that take an unusually long time to complete one task. T
 To deal with them, when MapReduce is close to completion, the master schedules a backup process of the current in-progress tasks and that task is finished if either the original or the backup is completed.
 
 ### Refinements
-A combiner function is executed on the machine that does the map first. Usually, the combiner function is the same as the reduce function, but the output are intermediate keyvalues instead of output files. This only works if the function is communtative and associative.
+A combiner function is executed on the machine that does the map first. Usually, the combiner function is the same as the reduce function, but the output are intermediate key-values instead of output files. This only works if the function is commutative and associative.
 
 (Positive) Side-effects (like inter split atomicity) have to be implemented by the application writer.
 
 Records can be skipped if the task fails on two different machines and the user is okay with that.
 
 ### Performance
-Input bandwidth is higher than shuffling and reducing bandwidth, as data locality can be exploited. Mapping goes a lot faster if the intermediary keyvalue pairs are small and fit into memory.
+Input bandwidth is higher than shuffling and reducing bandwidth, as data locality can be exploited. Mapping goes a lot faster if the intermediary key-value pairs are small and fit into memory.
 ![MapReduce performance](../images/07_mapReduce_performance.PNG)
 We can see that the shuffle has two spikes, after each round of the mapping, because the first mapping round did not have enough cores to handle all *M* partitions.
 ### Benefits of MapReduce

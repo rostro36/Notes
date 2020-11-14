@@ -6,9 +6,9 @@ COST stands for **C**onfiguration that **O**utperforms a **S**ingle **T**hread a
 This measure is needed, because scalability is often too much emphasized instead of computing time on a smaller (for many enterprises, more reasonable) systems.
 
 Reasons why complicated systems (often) perform worse than a single thread:
-- higher level language, in extreme cases a new idea is only faster, because the implementation of that datastructure is more optimized in that language.
+- higher level language, in extreme cases a new idea is only faster, because the implementation of that data structure is more optimized in that language.
 - administrative overhead, to check who started and finished already.
-- "over-balancing", sometimes spreading the data to other nodes, that then can all keep the information of their partition in memory, takes more time than doing the same job on one node from disk (e.g. each datapoint only has to be used once).
+- "over-balancing", sometimes spreading the data to other nodes, that then can all keep the information of their partition in memory, takes more time than doing the same job on one node from disk (e.g. each data point only has to be used once).
 - the big data system only allows one set of programming paradigm (e.g. MapReduce) instead of a more general framework.
 - the wrong algorithm/data layout is used, that scales well into big data, but has bad caching and other optimizations for small data.
 
@@ -17,7 +17,7 @@ All systems have a COST of 10 or 100 single-processor implementations for the us
 **Any system can scale arbitrarily well with a sufficient lack of care in its implementation.**
 ## [Spark SQL](https://dl.acm.org/doi/pdf/10.1145/2723372.2742797)
 ### General
-Previously there was a rather clear cut between realational database techniques (SQL on tables) and more general procedural interfaces (MapReduce). However, there are many tasks, which need functions from both and have to misuse the programming paradigm to make do. Spark SQL now gives acces to intermix both techniques.
+Previously there was a rather clear cut between relational database techniques (SQL on tables) and more general procedural interfaces (MapReduce). However, there are many tasks, which need functions from both and have to misuse the programming paradigm to make do. Spark SQL now gives access to intermix both techniques.
 
 Goals for Spark SQL:
 - Support relational processing within Spark programs (RDDs) and on external data sources.
@@ -29,7 +29,7 @@ Spark SQL runs on top of Spark and exposes interfaces for JDBC/OBDC or the DataF
 ### DataFrames
 DataFrames are a distributed collection of rows with the same schema, which is similar to a table, unlike to RDDs, they keep track of their schema to enable optimized SQL queries.
 
-They can be constructed from (external) tables or RDDs within the system. They are lazily evaluated, like RDDs, but code is eagerly validated, for that Spark SQL can automatically infer the schema of objects using reflection by using the typed objects of the language or sampling from the DataFrame. The most specific types taht fit are chosen.
+They can be constructed from (external) tables or RDDs within the system. They are lazily evaluated, like RDDs, but code is eagerly validated, for that Spark SQL can automatically infer the schema of objects using reflection by using the typed objects of the language or sampling from the DataFrame. The most specific types that fit are chosen.
 
 Spark SQL uses a nested data model and supports all major SQL data types (bool, int, double, decimal, string, date, timestamp, struct, array, map, union).
 
@@ -47,7 +47,7 @@ Catalyst manipulates abstract syntax trees of SQL queries using rules, which fin
 
 Spark begins the analysis with a relation to be computed either from an AST retuned by a SQL parser or from a DataFrame.
 1. Type the columns and give each column a clearly identifiable name. (**analysis**)
-1. Restructure that AST with predifined logical rules on abstract syntax trees(AST).(**logical optimization**) Those rules are rather simple pattern matching rules, that get executed on trees, where input sub-trees get repeatedly substitued for better sub-trees until there is no change left. After those changes the AST can be tested again.
+1. Restructure that AST with predefined logical rules on abstract syntax trees(AST).(**logical optimization**) Those rules are rather simple pattern matching rules, that get executed on trees, where input sub-trees get repeatedly substituted for better sub-trees until there is no change left. After those changes the AST can be tested again.
 1. The logical plan from the previous phase then gets mapped to one or more physical plans, where depending on the size of the underlying DataFrames, the plan with the cheapest joins get chosen (cost-based optimization).(**physical planning**)
 1. The final phase is compiling the selected physical plan to Java bytecode(**code generation**). To do that, type-checked quasiquotes are used, which get parsed by the Scala compiler (similar to *eval*).
 

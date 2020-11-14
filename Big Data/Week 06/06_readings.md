@@ -22,7 +22,7 @@ W3C includes:
 	
 Schemas validate against the combination of the namespace URI and the local name rather than the prefixed name.
 
-The Schemaprocessor also can get hints via the namespace, e.g. the *schemaLocation* must be in the default namespace to be processed correctly.
+The schemaprocessor also can get hints via the namespace, e.g. the *schemaLocation* must be in the default namespace to be processed correctly.
 
 ### Basic Building Blocks
 Schema that only allows strings:
@@ -71,20 +71,20 @@ Attribute definitions can also be pasted with the *xs:attributeGroup ref=Name*  
 Groups of mixed contents (lists/maps) can also be referenced with *xs:Group* in the schema.
 
 *xs:sequence* starts a dict declaration in the schema, where each element must be in the document, in the exact same order.
-*<xs:choice>* gives the choice of exactly one of the incapsulated elements.
-*<xs:all>* says that all of the incapsulated elements must be in the element in the doc, but the order does not matter.
+*<xs:choice>* gives the choice of exactly one of the encapsulated elements.
+*<xs:all>* says that all of the encapsulated elements must be in the element in the doc, but the order does not matter.
 
 *xs:any(Attribute)* element tell the schema processor that zero or more elements may occur at this location, it is used for setting attributes like namespace or *processContents="skip"* if the content should not be validated. 
 
 One can set the cardinality in the schema with the *maxOccurs* and *minOccurs* attributes of elements. For n one can use *unbounded*.
 
 Instead of explicitly saying that an element should be empty one can say that another *complexType* should live there and then not declare that *complexType*. *Null* is therefore the only empty *complexType*.
-*xs:complexContent* must be used instead of *xs:simpleContent* to use complex datatypes further down. Simple content is a basic datatype that may be restricted by *facets*.
+*xs:complexContent* must be used instead of *xs:simpleContent* to use complex data-types further down. Simple content is a basic data-type that may be restricted by *facets*.
 
 ### Importing schema pieces from other files
 *<xs:include schemaLocation="path"/>* lets you now reference other files in the schema as if they were at the bottom of this file.
 
-*<xs:redifine schemaLocation="path">* let's you import names, but extend/restrict it for this schema file, much like Java classes, unless the to-be-redifined class has a *final* attribute.
+*<xs:redifine schemaLocation="path">* let's you import names, but extend/restrict it for this schema file, much like Java classes, unless the to-be-redefined class has a *final* attribute.
 
 
 Using *xs:import*, it is possible to make the global types and elements that are declared by a schema belonging to another namespace accessible from within an arbitrary schema. There are also abstract classes.
@@ -94,7 +94,7 @@ Possible facets:
 	- length (or minLength and maxLength)
 	- pattern (of regex)
 	- enumeration &rightarrow; allowed values, many different values (e.g. True and False) must be in two following elements 
-	- whitespace &rightarrow; preserve, replace (with UTF) or collapse (and replace then)
+	- white-space &rightarrow; preserve, replace (with UTF) or collapse (and replace then)
 	- maxIncluse and maxExclusive
 	- minInclusive and minExclusive
 	- totalDigits (before and after the coma, the coma not counted)
@@ -114,11 +114,11 @@ Facets are applied by using the *xs:restriction* element in the schema and then 
  </xs:simpleType>
  ```
 
-*<xs:union memberTypes="*first_type second_type*"/>* makes it possible to allow two different datatypes. The *fixed* attribute for facets works like *final* for elements.
+*<xs:union memberTypes="*first_type second_type*"/>* makes it possible to allow two different data-types. The *fixed* attribute for facets works like *final* for elements.
 
 The *mixed* attribute of a element controls whether character data may appear between other elements, such that it may look like a html file.
 ### Namespaces
-To enforce a namespace in a schema, one can use the *targetNamespace* attribute of *xs:schema*. Doing so, one also has to change *xsi:noNamespaceSchemaLocation* to *xsi:schemaLocation* in the element of the document where the URL is the first token separated by a whitespace to the schema it should point to. The element in the document then still has to adhere to that namespace.
+To enforce a namespace in a schema, one can use the *targetNamespace* attribute of *xs:schema*. Doing so, one also has to change *xsi:noNamespaceSchemaLocation* to *xsi:schemaLocation* in the element of the document where the URL is the first token separated by a white-space to the schema it should point to. The element in the document then still has to adhere to that namespace.
 
 With *attributeFormDefault ="qualified"* all the attributes mentioned in the schema must be in the element as well, also with their prefix.
 
@@ -225,7 +225,7 @@ Dremel is a scalable, interactive ad hoc query system for analysis of read-only 
 
 Workers have different capabilities.
 
-Dremel is in situ, what is decently fast thanks to a common storage layer, like GFS. Often used to analyze MapReduce outputs. SQL-like language. Dremel uses a column-striped storage repesentation.
+Dremel is in situ, what is decently fast thanks to a common storage layer, like GFS. Often used to analyse MapReduce outputs. SQL-like language. Dremel uses a column-striped storage representation.
 
 ### Data model
 The data model (*Protocol Buffers*) is based on strongly typed nested records, which in the end looks similar to JSON and are cross-language.
@@ -239,7 +239,8 @@ The encoding is a delta encoding between two paths, the path from the previous o
 We differentiate between the repeated and non-repeated fields in terms of how we keep track of the repetition levels.
 1. For repeated (e.g., Links.Forward), the repetition level denotes the level of its parent field.
 
-2. For non-repeated (e.g., Name.Language.Code), the repetition level denotes the level of the "recently repeated" element. 
+2. For non-repeated (e.g., Name.Language.Code), the repetition level denotes the level of the "recently repeated" element.
+ 
 ![Dremel table layout](../images/06_dremel_block.PNG)
 
 To recreate a file from storage a FSM is used, depending on the queried fields a different FSM gets used.
@@ -248,15 +249,15 @@ Dremel's language is based on SQL. Each SQL statement takes nested tables and th
 ### Query execution
 During execution not used leafs are pruned away.
 
-Queries are executed using serving trees, which enable parallizing query scheduling and aggregation and also provide fault tolerance and balancing.
+Queries are executed using serving trees, which enable parallelizing query scheduling and aggregation and also provide fault tolerance and balancing.
 
 E.g. the root sends the query to the region servers, that then only give the results from their region. On the way up, the results get merged/aggregated. For *joins* on small tables, the table gets sent with the request. Sometimes, more than one pass is needed and the same query goes down and up multiple times.
 
 Intermediary nodes also keep track of the response times of their children and if need be balance the load. To speed-up drastically, we might be happy with responding already after only 98% of answers have arrived.
 
 ### Columnar vs row storage
-For dremel a local experiment was 3x faster with columnar storage compared to row storage (for 1-10 fields). Retrieval time about grows linearly with the number of fields. Record assembly is expensive, doubling the exec time.
+For Dremel a local experiment was 3x faster with columnar storage compared to row storage (for 1-10 fields). Retrieval time about grows linearly with the number of fields. Record assembly is expensive, doubling the exec time.
 
-For a simple query aggregation query on one field dremel is about 10 as effective as MapReduce. Deeper serving trees are faster (with same amount of leafs), because there is less load to aggregate the incoming results. 
+For a simple query aggregation query on one field Dremel is about 10 as effective as MapReduce. Deeper serving trees are faster (with same amount of leafs), because there is less load to aggregate the incoming results. 
 
 The execution time decreases linearly in the amount of leaf servers.

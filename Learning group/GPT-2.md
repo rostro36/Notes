@@ -11,7 +11,7 @@ A general language model should be trained on a general dataset, one promising s
 The collection was finished in December 2017 and after de-duplication and cleaning had about 8 million articles and 40GB of text and afterwards lower-cased, tokenized, byte pair encoded (an encoding between character and word level e.g. *th*) and out-of-vocabulary tokens were removed.
 
 ## Model
-A Transformer based architecture was used with a vocabulary size of 50'257, context size of 1024 and a batchsize of 512.
+A Transformer based architecture was used with a vocabulary size of 50'257, context size of 1024 and a batch-size of 512.
 
 12 layers correspond to 117 million parameters and 768 and a dimensional model. Roughly every 12 layers, the parameter space doubles, while the dimensions grow much slower, about 250 every 12 layers.
 ## Experiments

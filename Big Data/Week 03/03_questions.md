@@ -15,7 +15,7 @@
 - Why are HDFS blocks larger than normal (NTFS) blocks?
 	- The reason is to minimize the cost of seeks. Once the block is found the streaming time is rather short and random-access is not the most important property.
 	
-### HDFS usecase architecture
+### HDFS use case architecture
 - What is the difference between object storage and file file storage?
 	|**Object storage**|**File storage**
 	|-:|-:|
@@ -37,7 +37,7 @@
 - What does the DataNode do?
 	- It stores blocks of data.
 - What does the NameNode and DataNode talk with each other?
-	- DataNode always initiates connection to namenode and sends heartbeats
+	- DataNode always initiates the connection to NameNode and sends heartbeats
 		- NameNode answers with block operations
 	- every 6 hours there is a block report, to check if all blocks are stored/no block got corrupted
 - How does HDFS relate to the local computer on the DataNode?
@@ -55,7 +55,7 @@
 	For each block:
 		- The client asks the NameNode for DataNodes to store it's data.
 		- The client gets the DataNodes.
-		- The write-pipeline gets built by the frist DataNode.
+		- The write-pipeline gets built by the first DataNode.
 		- The client sends data through the DataNode pipeline.
 		- The client gets ACKnowledgement from the DataNode, once all have it written.
 		- The client tells the DataNode that the write is finished.
@@ -76,11 +76,11 @@
 - Where is the filesystem saved?
 	- In RAM of the NameNode.
 	- Can be reconfigured from the block reports, but takes time (30 minutes).
-	- The Standby/Backup/vice NameNode saves a log on it's own harddrive and keeps one copy in RAM for hot swap of primary NameNodes.
+	- The Standby/Backup/vice NameNode saves a log on it's own hard-drive and keeps one copy in RAM for hot swap of primary NameNodes.
 	- The secondary NameNode stores a checkpoint in persistent storage.
 - What is the balancing metric?
 	- Percentage of used storage on one node compared to percentage of used storage on whole system.
 - What is the benefit of a higher replication factor?
-	- Higher replication is higher fault toelareance and increases read bandwidth.
+	- Higher replication is higher fault tolerance and increases read bandwidth.
 - The chance that a node randomly dies is relatively small. Why is a snapshot still a good idea?
-	- The chance of HDDs dying is significantly higher if the power gets cut (for maintenance) and other maintenance work can increase this probability temporatily.
+	- The chance of HDDs dying is significantly higher if the power gets cut (for maintenance) and other maintenance work can increase this probability temporarily.

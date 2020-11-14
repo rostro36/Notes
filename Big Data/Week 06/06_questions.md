@@ -6,14 +6,19 @@
 	- They encode trees.
 - What is the difference between XML and JSON?
 	- XML knows it's name
+- What is the difference between well-formed vs valid documents?
+	- Valid documents must adhere some schema and the language, well-formed documents must only be well-formed in the language. Every valid document must be well-formed.
 - Is a document without a schema valid?
 	- By definition a valid document must have a schema, if it does not have a schema it is neither valid nor invalid.
+	
 ![JSON vs XML](../images/06_JSON_vs_XML.PNG)
+
 - What are the 4 XML (most important) information items?
 	- Document &rightarrow; children, version
 	- Element &rightarrow; local name, children, attributes, parent
 	- Attribute &rightarrow; local name, normalized value, owner element
 	- Character(Text) &rightarrow; characters, owner element
+## Schema bases
 - What are the 4 type system fundamentals?
 	- Distinction between atomic types and structured types
 	- More or less the same categories of atomic types
@@ -21,7 +26,7 @@
 	- Sequence type cardinalities
 - In database normal forms, when is the distinction between atomic types and structured types used?
 	- 1.NF only uses atomic types, non-normal allows structured types.
-- What are the atomic datatypes?
+- What are the atomic data types?
 	- String
 	- Numbers (often arbitrary precision in logical)
 	- Boolean
@@ -34,18 +39,19 @@
 	- \* zero or more (repeated)
 	- ? zero or one (optional)
 	- + one or more
-- What is the difference between well-formed vs valid documents?
-	- Valid documents must adhere some schema and the language, well-formed documents must only be well-formed in the language. Every valid document must be well-formed.
+## Examples
 - What is the high level structure of a dataset?
 	- A dataset is a list of maps.
 - What is an example of a homogeneous dataset?
 	- A database/CSV.
+## Different data-formats
 - What is the difference between homogeneous and heterogeneous datasets?
 	- Heterogeneous may have missing values. 
 - What are the categories of formats?
 	- Text vs. binary
 	- Nested vs. flat
 	- Schema optional vs. required
+## Default behaviour
 - What should we do if nothing about attributes is said?
 	- If nothing is written about attributes, they are allowed.
 - What is the default behaviour if an element does not exist?
