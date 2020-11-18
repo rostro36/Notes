@@ -181,6 +181,7 @@ The NM is the head of the computation node and has to:
 - report the state of his node to the RM
 - report the state of the jobs running on the node to the RM
 - kill containers if the RM or AM direct it to.
+- deal with logs of the containers.
 - realize *container launch context* (CLC) to local disk if it has the correct security tokens, the *CLC* encompasses 
 	- environment variables
 	- dependencies

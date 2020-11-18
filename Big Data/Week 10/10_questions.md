@@ -1,0 +1,104 @@
+# Big Data Week 10
+## Questions
+- How can you avoid network I/O scale-up?
+	- Batch process
+	- Push down computation
+		- pre-filter
+		- pre-project
+		- pre-aggregate
+- What is the rule of thumb for executor/core mix? 
+	- The amount of executors should be around the root of the cores.
+- How many task does every executor carry out?
+	- Every executor makes many tasks, depending how fast they are/ how close they are to the data.
+- Why should one make more than one job?
+	- To balance the jobs better.
+- Why should one not make a job for every record?
+	- Too much I/O over the network overhead and also update files.
+- What is UTF-8?
+	- It is an encoding of the Unicode character catalogue.
+- What are the most basic functions of a storage solution?
+	- **C**reate
+	- **R**ead
+	- **U**pdate
+	- **D**elete
+### Stragglers
+- What is tail latency?
+	- Stragglers/ that take significantly more time than other jobs.
+- What is the reason for stragglers?
+	- Queues
+	- Power limits(hyperthreading)
+	- Garbage collection
+	- Energy management
+- Why is it important to deal with stragglers, even though they are only a small percentage?
+	- The latency contributes everywhere;
+		- If the map-phase is not over, the reduce-phase can not start
+		- If all the other nodes are done with the reduce-phase, and one still takes time, then you are still waiting.
+- What can be done against stragglers?
+	- Execute every job twice, but about costs twice as much.
+	- Start with the second/back-up job, once the first one takes too long.
+### RDBMs vs. Document stores
+- What are the 3 basic integrities of RDBMs? 
+	- Atomic integrity (all entries are atomic values, not dicts or the like)
+	- Tabular/Relational integrity (all relations between tables are valid)
+	- Domain integrity (all entries in the same column have the same type)
+- What is the atomicity of MongoDB?
+	- Atomicity on one document, like the row-atomicity of HBase.
+- What is in-situ processing for these kind of data systems?
+	- In-situ reads and writes files directly as opposed to RDBMs and similar systems, that use the base data to populate a database, where it then gets read and written to.
+- What can go wrong from XML to SQL?
+	- "Nestedness", not atomic values
+	- Type heterogeneity
+- What is the problem with heterogeneity?
+	- We have to store a lot of NULLs, for all rows, where the field does not exist.
+- What is the document landscape that works best with document stores?
+	- Many small files of megabytes.
+- Document stores vs. RDBMs
+	- Good at projection and selection
+	- Passable at aggregation
+	- Bad at joins
+	
+	- Also in document stores, you validate a document after you have populated.
+### Defaults in MongoDB
+- What is the default document format in MongoDB?
+	-BSON, "JSON in binary", with a bit more data types.
+- Which language does MongoDB use?
+	- JavaScript
+- What is the default MongoDB behaviour if the query is empty?
+	- Take all.
+- What is the default MongoDB behaviour if a field does not exist in the data?
+	- Count it as false/not take it.
+- What makes a "0" in a projection?
+	- It excludes a field, all the rest is taken.
+- How to deal with nestedness in MongoDB:
+	- Dicts: use "."
+	- Arrays: use *$in*
+- How does MongoDB deal with mismatching types?
+	- It will be *False*, but not an error.
+- Which "database queries" exist in MongoDB?
+	- count
+	- sort
+	- skip
+	- limit
+	- distinct
+	- aggregate
+- What is special about *aggregate*?
+	- It makes a pipeline, which can be executed in parallel.
+- What ia a *replica set*?
+	- The redundant blocks for the same shard.
+- How is a shard accessed?
+	- Each shard has a primary node with one replica, which gets accessed first.
+- What are *write concerns* in MongoDB?
+	- The difference between a synchronous (wait for ACK of all secondary nodes) and asynchronous (don't wait) action.
+### Indices
+- Why are indices needed?
+	- To find elements faster compared to a full scan.
+- How do indices work?
+	- Looking up the index in a table points to all the matching elements.
+- What is the best data structure for indices?
+	- A B+-tree, where the inner nodes are criteria and the leafs are the elements.
+- In a B+-tree, how many children will a node with n keys have?
+	- n+1 children
+- Is there a default index?
+	- Yes, by default *"_id"* is indexed, but many other indices can be created.
+- Why does it not make sense to have a index on *year* and one on *year* , *month*?
+	- *year* , *month* already contains an index on *year*.

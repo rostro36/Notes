@@ -32,7 +32,7 @@
 - What is the difference in creation of a schema between a RDBMS and Spark?
 	- RDBMS have to define a schema and import data for the table, Spark reads directly from the data.
 - What is the functionality of *explode(array)* in SparkSQL?
-	- For each entry in the array, a new row with only that entry is added.
+	- For each entry in the array, a new row with only that entry is added instead of the array. This adds a prefix to *product*: *fi.product*, yet the non-array field have no prefix. 
 - How does SparkSQL deal with objects/dicts?
 	- One can address objects/dicts with ".".
 - How does SparkSQL deal with data heterogeneity?
