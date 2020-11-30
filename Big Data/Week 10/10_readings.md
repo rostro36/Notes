@@ -157,7 +157,8 @@ Default sorting behaviour for limit and skip:
 1. Numbers (integers, longs, doubles)
 1. Strings
 1. Object/document
-1. Array7.Binary data
+1. Array
+1. Binary data
 1. Object ID
 1. Boolean
 1. Date

@@ -2,6 +2,8 @@
 ## Introduction
 Sometimes models don't distinguish on what they should model due to bad data collection. e.g. tanks shot at night are Russian
 
+In the Kepler dataset signal is rather small compared to the noise
+- disentangle noise from signal
 ## Basics and notation
 - DAG with random variables as nodes, direct causations as edges, U=noise, PA=Parent
 - DAG causal/topological ordering, not strict
@@ -22,14 +24,28 @@ Sometimes models don't distinguish on what they should model due to bad data col
 	- The shifts can be active (e.g. distribution drift) or active(intervention, action).
 - Causal generative process is composed of autonomous modules that do not inform or influence each other.
 
+- Half-sibling entanglement
+	- Two stars don't interfere with each other, but share the same noise (This is true if the stars are a certain amount apart as camera can oversaturate)
+	- Assume additive random Noise f(N)
+	- Assume total information, meaning we can get the f(N) from X.
+		- We can find Q up to a certain c, that gets added
+	If no total information, hope for negligible influence of R, either it is really low or jointly independent and cancel out.
+		- E[(^Q-(Q-E[Q]))^2]=E[Var[f(N|X)]]
+	^Q=Q-E[Q]=Y-E[Y|X]
+
+
 ## Problems
 ### Towards causal representational learning
-- Problem SCMs are typically at the 'symbolic' level, they assume the causal variables are given
+- Problem: SCMs are typically at the 'symbolic' level, they assume the causal variables are given
 - Goal: embed an SCM into a a DL model, whose inputs and outputs are high-dimensional and unstructured
 	- given a X construct sparse causal variables S and mechanisms S=f_i(PA_i,U_i), such that we get a disentangled representation on these causal variables
 - Observation: reparametrization trick used by SCMs and deep generative models.
 - Idea: use SCMs for the problem
-
+### Disentangle noise
+- Problem: signal and noise are of the same magnitude
+- Goal: find a method to disentangle the noise from the signal to allow better predictions
+- Observation: the noise is shared across many datapoints, both in time and spatial
+- Idea: Use half-sibling regression on the datapoints
 ## Methods
 ### Experts
 - Have M different experts, while training, the one that gives the best score for one training sample(that has been tampered with in one mechanism) gets it as training. The others ignore that sample.
@@ -68,9 +84,26 @@ Sparse causal shift training: require that across domain shifts or actions/inter
 an image consists of multiple different objects, where each object has an own position, but share the lighting, but influence the image together.
 
 training data is images and now find factorization.
+### Transit photometry
+Two stars don't interfere with each other, but share the same noise (This is true if the stars are a certain amount apart as camera can oversaturate)
+
+Y can explain a previous or future version of itself e.g. from/to 1 day
+
+Found a habitable planet
+
+### Direct imaging
+Get a picture of the sun and filter out the sun
+Derotate earth's rotation  (angular differential imaging)
+
+don't show explainable effects/pixels and focus on unexplainable pixels
+
+Half sibling regression performs significantly better than the previously used PCA and is even better with additional domain knowledge about the camera
 ## Outlook/ open questions
 ### Towards causal world models
 learn an interventional multi-task/environment model
 - multi-task in multi environments
 - re-usable components, that are robust across tasks
 - define objects by transformations
+### Half-siblings
+- ???
+digital revolution might be similar to industrial revolution, but instead of energy, generate/convert/process information with the help of machine learning

@@ -1,0 +1,5 @@
+2. db.restaurants.count({"cuisine": {$in: ["Irish","Chinese"]}})
+
+3. db.restaurants.count({"borough": {$ne: "Brooklyn"}})
+
+5.  db.restaurants.count({$and: [{"address.zipcode":"11235"}, {"grades": {$elemMatch:{grade:"C", score:{$gt: 10}}}}]})
