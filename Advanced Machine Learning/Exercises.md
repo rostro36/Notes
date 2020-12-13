@@ -16,7 +16,7 @@ I would advise you to at least read through all other exercises at least once an
 ### To get some maths training:
 - 1.3 EM-Algorithm, check the notes
 - 5.1 Lagrangian repetition
-- (4.2.) As the last one to repeat Fisher's LDA
+- (4.2.) As the least important to repeat Fisher's LDA
 ## Exercise sheet 1
 1. (Regression) 
 	- Good exercises to start and revise some basic concepts without books
@@ -30,7 +30,7 @@ I would advise you to at least read through all other exercises at least once an
 		
 		</details>
    - Check the solution after step 3, as it makes the whole problem much easier and the step is not trivial!
-   - 6. is hard, such that it may not work in the first try, but maybe read the solution and solve it the next day again.
+   - 6 is hard, such that it may not work in the first try, but maybe read the solution and solve it the next day again.
 ## Exercise sheet 2
 As said in the tutorial session, use the [matrix cookbook](https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf) for the matrix derivatives and definitions of certain distributions.
 
@@ -53,8 +53,8 @@ Problem 2, 3 and 4 use the technique of "completing the triangle", that I can se
 	1. I am not too pleased about the exercise questions, just play with the [source website](https://www.jgoertler.com/visual-exploration-gaussian-processes/) for like 5 minutes.
 1. (Newton Method)
 	- Also likely to occur in some form, especially the very first question.
-	- 2. is not hard, once the solution is known. Should be in the repertoire at the exam.
-	- 3. Too complicated for me.
+	- 2 is not hard, once the solution is known. Should be in the repertoire at the exam.
+	- 3 Too complicated for me.
 1. (Gradient Descent)
 	- Important and doable.
 ## Exercise sheet 4
@@ -93,13 +93,13 @@ Problem 2, 3 and 4 use the technique of "completing the triangle", that I can se
 		sig'(x)=sig(x)(1-sig(x))
 		</details>
 1. (Cluster quality evaluation)
-	- Okay exercise, solvable, but I don't like the solutions.
+	- Okay exercise, solvable, but I don't like the solutions, [here](https://github.com/rostro36/Notes/blob/master/Advanced%20Machine%20Learning/Solutions_sheet_7_2.pdf) are mine.
 	- <details><summary>Hints 2</summary>
 		You have to show both inequalities, I being bigger-equal 0 is easier the comparison with H.
-		
-		Try to rewrite I as H for the higher bound and use that U's form X
+		For the first inequality, you should use Jensen's inequality that was used in the alternate proof of the [Gibbs inequality](https://en.wikipedia.org/wiki/Gibbs%27_inequality)
+		Try to rewrite I as H for the higher bound and use that the union of the U's form X.
 		</details>
-	- 3. Depending on the edge case from 1. this can be impossible to be found, make your thoughts and then read the solution.
+	- 3 Depending on the edge case from 1. this can be impossible to be found, make your thoughts and then read the solution.
 1. (Dirichlet process)
 	- I don't like that exercise, stop when you have a tractable sum that you can put into [WolframAlpha](https://www.wolframalpha.com/), the computation of the sum is too complicated for me.
 	
