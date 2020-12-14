@@ -84,7 +84,33 @@ Problem 2, 3 and 4 use the technique of "completing the triangle", that I can se
 1. (Boosting)
 	- Simply puts in the function definitions into the algorithm. Once boosting is understood, probably not needed any more.
 ## Exercise sheet 6
-1. Dra
+1. (AdaBoost and forward stagewise additive modeling)
+	- Pretty hard exercise, I could not solve any exercise without hints
+	-  <details><summary>Hints 1</summary>
+		What does the expectation mean? Write it out and the solution can be derived.
+		</details>
+	- I could not solve 2, if you don't succeed, look at solution
+	- <details><summary>Hints 3</summary>
+		The solution is easier than the previous exercises.
+		Simplify the solution first, then derive the loss and make a case distinction.
+		</details>
+	- <details><summary>Hints 4</summary>
+		Simplify a bit and then case distinction on I.
+		</details>
+1. (Activation functions in Neural Networks)
+	- Depending on how good the solution should be, this question can be quite easy. I would recommend to solve it, don't try to simplify and look at the solutions.
+	- <details><summary>Hints</summary>
+		Start with the activation and remember to adjust the y and the activation in the loss.
+		</details>
+1. (Regularization in DNNs)
+	- Interesting high level questions about DNNs, solve once and know it for the rest.
+1. (Convergence of the Robbins-Monro algorithm)
+	- Interesting background, okay exercise.
+	- 1, you can keep &theta;* as is.
+	- 3, write &theta;^k in terms of &theta;^1, the rest of the exercise is then just the same as exercise 2 and not worth the time.
+	- 4, take the solution from 3, it is only expected to bound the first half of that term.
+	- 6, a handwavy argument is good enough, finally fill in the assumptions on &eta;
+	- 7, this is one sentence
 ## Exercise sheet 7
 1. (Backpropagation)
 	- Standard backpropagation of a neural net, you should definitely know how to do that.(although I am still shaky)
