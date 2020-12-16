@@ -41,7 +41,6 @@ Column Families need to be defined at table creation time, should be limited to 
 (Table, RowKey, Family, Column, Timestamp) &rightarrow; Value
 
 **Regions** are essentially contiguous ranges of rows stored together. Each region (and by extension also each row) is served by exactly one region server, and each of these servers can serve many regions at any time. The regions help with fast recovery and load balancing.
-
 ### Storing
 Every *HFile* consists of a block index and many (data) blocks where the default block size is 64 KB. The index is in memory and used to easier search a block.
 

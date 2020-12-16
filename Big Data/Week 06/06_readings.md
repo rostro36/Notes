@@ -232,9 +232,9 @@ The data model (*Protocol Buffers*) is based on strongly typed nested records, w
 
 Try to store the columns next to each other to improve retrieval efficiency, what is hard if they are (arbitrarily) nested and/or repeated.
 
-Each column is stores as a set of blocks.
+Each column is stored as a set of blocks.
 ### Encoding tree position of same type
-The encoding is a delta encoding between two paths, the path from the previous one and the encoding from the new path. The two parameters are *r* for repetition, which tells how many hops are shared and *d* for definition, which tells how big the whole path is. Required fields are not counted. A *d* smaller than the max depth denotes a *NULL*. The encoding preserves the record structure losslessly. *r* gets omitted if *d*=0.
+The encoding is a delta encoding between two paths, the path from the previous one and the encoding from the new path. The two parameters are *r* for repetition, which tells how many hops are shared and *d* for definition, which tells how big the whole path is. Required fields are not counted. A *d* smaller than the max repetition level denotes a *NULL*. The encoding preserves the record structure losslessly. *r* gets omitted if *d*=0.
 
 We differentiate between the repeated and non-repeated fields in terms of how we keep track of the repetition levels.
 1. For repeated (e.g., Links.Forward), the repetition level denotes the level of its parent field.
