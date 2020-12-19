@@ -1,4 +1,4 @@
-# Big Data Week 03
+# Big Data Week 03 readings
 
 ## Use case
 Store very large data sets reliably and to stream those data sets at high bandwidth to user applications.

@@ -1,5 +1,4 @@
-# Big Data Week 09
-
+# Big Data Week 09 readings
 ## [Scalability! But at what COST?](https://www.usenix.org/conference/hotos15/workshop-program/presentation/mcsherry)
 COST stands for **C**onfiguration that **O**utperforms a **S**ingle **T**hread and is a measure that shows the size of the machine/cluster needed for a system until it is the same as a simple implementation on a single thread, due to overhead.
 

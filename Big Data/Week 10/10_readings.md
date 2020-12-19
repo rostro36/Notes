@@ -1,4 +1,4 @@
-# Big Data Week 10
+# Big Data Week 10 readings
 ## MongoDB: The Definitive Guide - Chapter 3
 MongoDB leaves padding factor which is the amount of extra space it gives the documents to grow, default is 1 and gets bigger if the document gets over the factor and diminishes if the document does not move again.
 
@@ -74,7 +74,6 @@ Arrays are 0-indexed. And *$* can be used as a wildcard which corresponds to all
 By default actions (and the applications that execute them) wait until they get a response from the database.
 - **Acknowledged** writes wait for a (positive/negative) response from the database.
 - **Unacknowledged** writes do not give a response, so you don't know if they went through. (Malformed code, duplicate keys also go unnoticed)
-
 
 ## MongoDB: The Definitive Guide - Chapter 4
 ### Querying in general
@@ -186,11 +185,10 @@ Database commands are metacommands that handle the database for e.g.
 - count documents
 - do aggregations
 - ```javascript
-db.runCommand({getLastError : 1})
-```
+  db.runCommand({getLastError : 1})
+	```
 
 These commands act like normal commands, but on the *"cmd"* collection and the most important returned fields are "*ok*" (where 1 is good) and *"errmsg"*, which gets omitted if the command was successful. They are field order-sensitive.
-
 
 ## MongoDB: The Definitive Guide - Chapter 5
 ### Index general

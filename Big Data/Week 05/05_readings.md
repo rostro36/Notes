@@ -1,4 +1,4 @@
-# Big Data Week 05
+# Big Data Week 05 readings
 ## HBase - The Definitive Guide
 ### Column-oriented databases
 Column-oriented databases save their data grouped by columns.

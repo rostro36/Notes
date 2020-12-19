@@ -1,6 +1,5 @@
-# Big Data Week 02
-## Questions
-### Theory questions
+# Big Data Week 02 questions
+## Theory questions
 <details><summary>Why are abstractions useful? </summary>
 	
 - They limit the complexity at a node. With less complexity resources can be saved by relying on others to do their job right and more importantly reduces coding/maintenance time.
@@ -55,7 +54,7 @@
 		
 </details>	
 	
-### Implementation questions
+## Implementation questions
 <details><summary>What are stateful services? </summary>
 	
 - Stateful services have to fetch something in memory that can change, stateless services do not need any data-memory; only code-memory.		

@@ -1,4 +1,4 @@
-# Big Data Week 06
+# Big Data Week 06 readings
 
 ## [XML Schemas](https://docstore.mik.ua/orelly/xml/xmlnut/ch16_01.htm)
 Schemas can describe complex restrictions on elements and attributes. Multiple schemas can be combined to validate documents that use multiple XML vocabularies.
@@ -71,8 +71,10 @@ Attribute definitions can also be pasted with the *xs:attributeGroup ref=Name*  
 Groups of mixed contents (lists/maps) can also be referenced with *xs:Group* in the schema.
 
 *xs:sequence* starts a dict declaration in the schema, where each element must be in the document, in the exact same order.
-*<xs:choice>* gives the choice of exactly one of the encapsulated elements.
-*<xs:all>* says that all of the encapsulated elements must be in the element in the doc, but the order does not matter.
+
+*\<xs:choice\>* gives the choice of exactly one of the encapsulated elements.
+
+*\<xs:all\>* says that all of the encapsulated elements must be in the element in the doc, but the order does not matter.
 
 *xs:any(Attribute)* element tell the schema processor that zero or more elements may occur at this location, it is used for setting attributes like namespace or *processContents="skip"* if the content should not be validated. 
 

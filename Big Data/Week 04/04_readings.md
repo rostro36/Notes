@@ -1,4 +1,4 @@
-# Big Data Week 04
+# Big Data Week 04 readings
 ## [JSON Standard](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)
 ### General
 JSON is a text syntax that facilitates structured data interchange and depends on Unicode in the hex numbers used in the \u escapement notation, this means JSON is programming language independent and the standard only defines conformance, not how to interpret the text e.g. if an object is a list or an array.
@@ -39,7 +39,7 @@ Only one exponent allowed, only one leading 0 allowed, then dot or e.
 
 Non- numeric numbers like NaN or Infinity are not allowed.
 ### String
-Unicode character wrapped in quotation marks. Escaping "\"",\ with \ before, new line and friends are also with \n etc.. 
+Unicode character wrapped in quotation marks. Escaping " \" ", "\\" with \ before, new line and friends are also with \n etc.. 
 
 Any UTF-8 (in the basic multilingual plane) character can be represented by \u *(4-digit\*number)*, one can send non-UTF-8 chars (which have more than 4 digits) represented as a twelve-char sequence encoding in the UTF-16 surrogate pair, but if it is seen as two UTF-8 or one UTF-16 is the job of the processor, not the language.
 ### Objects

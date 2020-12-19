@@ -1,4 +1,4 @@
-# Big Data Week 08
+# Big Data Week 08 readings
 ## [Dominant Resource Fairness](https://cs.stanford.edu/~matei/papers/2011/nsdi_drf.pdf)
 ### General
 DRF can be implemented such that each scheduling decision takes time O(log(users)).

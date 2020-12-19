@@ -1,4 +1,4 @@
-# Big Data Week 05
+# Big Data Week 05 questions
 ## General
 <details><summary>What are the disadvantages of RDBMS? </summary>
 
@@ -46,6 +46,7 @@
 <details><summary>What is the hierarchy of entities in HBase? </summary>
 
 - Table &rightarrow; Region &rightarrow; Store &rightarrow; HFile &rightarrow; HBlock &rightarrow; KeyValue
+
 ![Architecture](../images/05_layers.PNG)
 
 </details>
@@ -80,6 +81,7 @@
 <details><summary>What is in a key of a HFile? </summary>
 
 - (RowID,columnID,version/timestamp)
+
 ![KeyValue](../images/05_keyvalue.PNG)
 
 </details>
@@ -128,6 +130,7 @@
 <details><summary>How is data stored on persistent storage? </summary>
 
 - In Log-structured merge-trees, which double in size for every level, and every level holds at most one node.
+
 ![LSM-tree](../images/05_LSM_tree.PNG)
 
 </details>

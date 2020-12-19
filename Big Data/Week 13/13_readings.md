@@ -1,4 +1,4 @@
-# Big Data Week 13
+# Big Data Week 13 readings
 ## [Database Systems Chapter 10.6](https://people.inf.elte.hu/miiqaai/elektroModulatorDva.pdf)
 OLAP:
 - **O**n
@@ -15,7 +15,7 @@ OLTP:
 
 The *fact table* is the central collection of data inside a warehouse.
 
-*Raw-data cube*:
+*Raw-data cube*: only the raw data, no aggregation therefore may have duplicates
 *Formal data cube*: includes aggregations of the data in all subsets and the data itself
 					maybe aggregation is already done for the first time to remove duplicates
 *ROLAP*: Relational OLAP, data saved in a star schema, where the central fact table is composed of raw data cubes

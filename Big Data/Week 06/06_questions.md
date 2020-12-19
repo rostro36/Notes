@@ -1,4 +1,4 @@
-# Big Data Week 06
+# Big Data Week 06 questions
 ## General
 
 <details><summary>What is the objective of the lecture? </summary>
@@ -43,10 +43,10 @@
 ## Schema bases
 <details><summary>What are the 4 type system fundamentals? </summary>
 
-	- Distinction between atomic types and structured types
-	- More or less the same categories of atomic types
-	- Lists and maps(dict) as structured types
-	- Sequence type cardinalities
+- Distinction between atomic types and structured types
+- More or less the same categories of atomic types
+- Lists and maps(dict) as structured types
+- Sequence type cardinalities
 
 </details>
 <details><summary>In database normal forms, when is the distinction between atomic types and structured types used? </summary>
@@ -68,9 +68,9 @@
 <details><summary>What are the 3 cardinality types? </summary>
 
 - One (required)
-- \* zero or more (repeated)
-- ? zero or one (optional)
-- + one or more
+- \* &rightarrow; zero or more (repeated)
+- ? &rightarrow; zero or one (optional)
+- \+ &rightarrow; one or more
 
 </details>
 <details><summary>In JSON schema, what is the difference between "allOf", "anyOf" and "oneOf"? </summary>

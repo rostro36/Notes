@@ -3,7 +3,7 @@
 - In general the exercises do not get necessarily harder during the semester.
 - Obviously I do not know how the exercises stand in relation to the final exam.
 - These are my impressions of the exercises, if you have something you want to talk about, please notify me.
-- TBD: Exercise Sheet 8 and questions from the lecture
+- TBD: Questions from the lecture
 ## Best of
 I would advise you to at least read through all other exercises at least once and repeat the best-of exercises before the exam.
 - 1.1. To get started again.

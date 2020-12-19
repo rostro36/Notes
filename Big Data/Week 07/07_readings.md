@@ -1,4 +1,4 @@
-# Big Data Week 07
+# Big Data Week 07 readings
 
 ## HBase - The Definitive Guide - MapReduce Integration
 MapReduce processes terabytes of data in a scalable way, as it scales linearly with the added systems to it.
@@ -36,7 +36,7 @@ The intermediate values are supplied to the reduce machine via an iterator to ma
 
 - map: (k1,v1) &rightarrow; list(k2,v2)
 - reduce: (k2, list(v2)) &rightarrow; list(v2)
-### Implemenatation
+### Implementation
 Input gets partitioned into *M* splits, where up to *M* cores can process them in parallel.
 
 Afterwards the intermediate values are split to *R* parts, e.g. default is using hash(key)%*R*, but others can be supplied, and sent to the reducing machines.
@@ -49,13 +49,13 @@ The mapping machines keep the intermediate key/value pairs in memory until they 
 
 In the end each of the *R* intermediary splits makes an output file.
 
-Each of the file have a final atomic message they can send to signal that it is completed.
+Each of the files have a final atomic message they can send to signal that it is completed.
 
 The result of MapReduce correspond to *some* sequential execution of all those steps, but we don't know which one.
 
 MapReduce is executed on the same machines that host the data, so the data does not have to be transferred around.
 
-Bigger *M*, *R* make it easier to balance the load and a better checkpoint when a worker fails, but gives more pieces the master has to keep track of and gives more output files and files that have to be transissioned.
+Bigger *M*, *R* make it easier to balance the load and a better checkpoint when a worker fails, but gives more pieces the master has to keep track of and gives more output files and files that have to be transmitted.
 
 A good number for *M* is that the input block is roughly 16-64 MB. A sample configuration is *M*=200'000, *R*=5'000 with 2'000 workers. 
 ### Master
@@ -85,7 +85,9 @@ Records can be skipped if the task fails on two different machines and the user 
 
 ### Performance
 Input bandwidth is higher than shuffling and reducing bandwidth, as data locality can be exploited. Mapping goes a lot faster if the intermediary key-value pairs are small and fit into memory.
+
 ![MapReduce performance](../images/07_mapReduce_performance.PNG)
+
 We can see that the shuffle has two spikes, after each round of the mapping, because the first mapping round did not have enough cores to handle all *M* partitions.
 ### Benefits of MapReduce
 MapReduce is:

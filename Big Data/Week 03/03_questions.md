@@ -1,7 +1,6 @@
-# Big Data Week 03
+# Big Data Week 03 questions
 
-## Questions
-### Throughput, Capacity, Latency, Block Size
+## Throughput, Capacity, Latency, Block Size
 <details><summary>Importance of Throughput, Capacity and Latency? </summary>
 
 - Depends on the application, but Capacity can be much higher compared to Throughput, which can be bigger than Latency.
@@ -27,7 +26,7 @@
 
 </details>
 	
-### HDFS use case architecture
+## HDFS use case architecture
 
 <details><summary>What is the difference between object storage and file file storage? </summary>
 
@@ -80,7 +79,7 @@
 
 </details>
 
-### Read/Write
+## Read/Write
 <details><summary>How does a data block look like? </summary>
 
 - Each data block consists of the data itself and it's metadata (checksums, generation stamp) in two separate files.	
@@ -131,7 +130,7 @@ Next block
 
 </details>
 
-### Balancing & Replication
+## Balancing & Replication
 <details><summary>Where are the replicas optimally placed? </summary>
 
 - Same rack as the client.

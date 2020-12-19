@@ -1,4 +1,4 @@
-# Big Data Week 12
+# Big Data Week 12 readings
 ## [Graph Databases Chapter 3](https://hura.hr/wp-content/uploads/2016/10/Graph_Databases_2e_Neo4j-5.pdf)
 ### Labelled property graphs general
 Labelled property graphs consist of:
@@ -67,7 +67,6 @@ MATCH 	(theater:Venue {name:'Theatre Royal'}),
 RETURN DISTINCT play.title AS play
 ```
 The first three parts act as anchors and are reused in the big query. *[:STREET|CITY\*1..2]* will match streets or cities never, once or twice.*()* is called an anonymous node that matches every node. *Distinct* is used in the end to eliminate duplicates. 
-
 
 ### Put the real world into a RDBMS
 A good strategy to digitalize a dataset into a RDBMS is to:

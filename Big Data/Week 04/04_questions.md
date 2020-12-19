@@ -1,4 +1,4 @@
-# Big Data Week 04
+# Big Data Week 04 questions
 
 ## Usage
 
@@ -99,7 +99,7 @@
 </details>
 <details><summary>Can you give a simple XML document? </summary>
 
-- <person/>
+- \<person\/\>
 
 </details>
 <details><summary>How is the root level different to any other level in XML? </summary>
@@ -130,7 +130,7 @@
 - Alphanumeric, special characters, "-","\_" and "." 
 
 </details>
-<details><summary>- Of those legal characters, which can be at the start? </summary>
+<details><summary>Of those legal characters, which can be at the start? </summary>
 
 - Small and capital letter, "\_".
 
@@ -172,7 +172,7 @@
 <details><summary>What is an XML declaration there for and how does a sample look like? </summary>
 
 - The XML declaration sets grounds for reading the XML file to follow.
-- <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+- \<\?xml version="1.0" encoding="UTF-8" standalone="no" \?\>
 
 </details>
 <details><summary>Where can I put a XML declaration? </summary>
