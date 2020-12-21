@@ -89,7 +89,7 @@ There are different kinds of ends for the edges and they also have different inf
 For better testing the graph is time-coded and trained on the previous knowledge and tested on the new knowledge.
 
 Negative sampling was also used
-### Relational inference for link prediction
+## Relational inference for link prediction
 Each entity and edge is embedded in a d-dimensional vector, which has to be learnt at training time.
 
 ![Formula](images/preclinical_formula.PNG)
@@ -98,14 +98,14 @@ Where the real and imaginary parts are supplied by [ComplEx](https://jmlr.csail.
 
 [ComplEx](https://jmlr.csail.mit.edu/papers/volume18/16-563/16-563.pdf) scoring function to form a decoder.
 
-### Tests
+## Tests
 Find new drugs/treatments via tensor inference 
 
 Predict success /failure of a treatment with classification on the embeddings
 
 The model, Rosalind, outperforms the state-of-the-art and predicts the nearest discoveries best, what is sensible, since the literature the model was trained on is also closest to these discoveries.
 
-### Problems
+## Problems
 "One common issue with biological knowledge graphs is the presence of noisy (i.e. erroneous) data, limiting the power of relational inference algorithms. While Rosalind uses established biomedical databases and expert-validated text-extracted data for knowledge graph construction, these sources are noisy: biological data is often ambiguous or even contradictory."
 
 "Lack of interpretability of predictions"
