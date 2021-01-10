@@ -89,6 +89,7 @@
 
 - The first immediate results only depend on one shard (Map). O(1)
 - The second immediate results depend on many other first immediate results (Shuffle). O(n^2)
+	- As in the worst case n immediate results have to be generated and sent to n reducers.
 - The final results only depend on one of the second immediate results (Reduce). O(1) 	
 
 </details>	

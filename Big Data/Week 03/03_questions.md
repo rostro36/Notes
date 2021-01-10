@@ -28,13 +28,13 @@
 	
 ## HDFS use case architecture
 
-<details><summary>What is the difference between object storage and file file storage? </summary>
+<details><summary>What is the difference between object storage and file storage? </summary>
 
 |**Object storage**|**File storage**
 |-:|-:|
 |Billions of TB files|Millions of PB files	|
 |bad latency, better throughput	|better latency, worse throughput	|
-|allows random access	|only allows scanning	|
+|allows object-level access	| allows block-level access	|
 |often only key-value, (get/put)	|file system exists	|
 |offered as services by Amazon (or other) use with other people	|create&use cluster yourself	|
 
@@ -89,7 +89,7 @@
 <details><summary>How does a client get data from HDFS? </summary>
 
 - The client asks the NameNode about a file.
-	- The NameNode responds with the BlockIDs, sorted by distance to fetch.
+- The NameNode responds with the BlockIDs, sorted by distance to fetch.
 - The client then asks one DataNode for each BlockID for the data.
 
 ![Block read](../images/03_read.PNG)	
@@ -98,13 +98,13 @@
 <details><summary>How does a client store data in the HDFS? </summary>
 
 For each block:
-	- The client asks the NameNode for DataNodes to store it's data.
-	- The client gets the DataNodes.
-	- The write-pipeline gets built by the first DataNode.
-	- The client sends data through the DataNode pipeline.
-	- The client gets ACKnowledgement from the DataNode, once all have it written.
-	- The client tells the DataNode that the write is finished.
-	- The DataNodes tell the NameNode that they have received the block (while doing the heartbeat).
+- The client asks the NameNode for DataNodes to store it's data.
+- The client gets the DataNodes.
+- The write-pipeline gets built by the first DataNode.
+- The client sends data through the DataNode pipeline.
+- The client gets ACKnowledgement from the DataNode, once all have it written.
+- The client tells the DataNode that the write is finished.
+- The DataNodes tell the NameNode that they have received the block (while doing the heartbeat).
 Next block
 
 ![Block write](../images/03_write.PNG)	

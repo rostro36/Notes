@@ -187,7 +187,7 @@ The lower the level, the harder/verbose the code, but also faster.
 </details>
 <details><summary>How is atomicity achieved in Neo4j? </summary>
 
-- Data only gets written if is wholly done, either by memory flush or written in the write ahead log.
+- Data only gets written if it is wholly done, either by memory flush or written in the write ahead log.
 
 </details>
 <details><summary>How is recoverability achieved in Neo4j? </summary>

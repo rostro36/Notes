@@ -124,11 +124,13 @@
 - If one user-group does not use it's whole capacity, it can be shared with another user-group.	
 
 </details>
-<details><summary>How does the fair scheduler work? </summary>
+<details><summary>How does the (weighted) fair scheduler work? </summary>
 
 - Steady Fair Share: the capacity/weights each user-group has reserved/bought
 - Current Share: Current usage
-- Delta: Current-Steady Fair share	
+- Delta: Current usage-Steady Fair share
+
+- The fair scheduler gives the slot to the user with the biggest delta. 
 
 </details>
 <details><summary>What is the difference between instantaneous fair share vs. steady fair share? </summary>

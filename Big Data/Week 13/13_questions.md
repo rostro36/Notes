@@ -1,4 +1,4 @@
-# Big Data Week 12 Questions
+# Big Data Week 13 Questions
 ## OLTP vs OLAP
 <details><summary>What is slow interactive? </summary>
 
@@ -27,7 +27,7 @@
 - OLAP: cubes
 
 </details>
-<details><summary>Why does OLTP not normalise? </summary>
+<details><summary>Why does OLTP not always normalise as much as possible? </summary>
 
 - It is read intensive and has little updates, so the run time save from not doing joins is bigger than the loss from more writes.
 
@@ -99,17 +99,17 @@
 </details>
 <details><summary>What are measures in a fact table? </summary>
 
-- different values (dimensions) given the keys, e.g. cost,profit
+- Different values (dimensions) given the keys, e.g. cost,profit
 
 </details>
 <details><summary>What are satellite tables? </summary>
 
-- Extra information on the central table.
+- Extra information tables that relate from the central table.
 
 </details>
 <details><summary>What is the star schema? </summary>
 
-- Each dimension in the main table has a satellite table.
+- Each dimension in the main table has at most one satellite table.
 
 </details>
 <details><summary>What is the snowflake schema? </summary>
@@ -162,7 +162,7 @@
 - Dimensions/columns
 
 </details>
-<details><summary> What are some benefits of MDX compared to fact sheets? </summary>
+<details><summary>What are some benefits of MDX compared to fact sheets? </summary>
 
 - MDX is aware of hierarchies, similarly to trees.
 - MDX allows to dice easily with on columns/rows

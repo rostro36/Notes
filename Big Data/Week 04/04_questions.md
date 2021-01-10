@@ -40,11 +40,6 @@
 
 - Special characters in UTF-16, ", \ and white-space characters.
 
-</details>
-<details><summary>What are the possible JSON values? </summary>
-
-- Object, array, number, string, boolean, null 
-
 </details>	
 <details><summary>What does a number in JSON correspond to in Python? </summary>
 

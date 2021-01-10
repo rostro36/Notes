@@ -83,11 +83,6 @@
 - "[q]" for arrays (if q is none, then it is the same as explode and q=[number] for an index)
 
 </details>
-<details><summary>How does JSONiq open a json file? </summary>
-
-- json-doc("myfile.json")
-
-</details>
 <details><summary>How can filtering be done in JSONiq? </summary>
 
 - [$$.code="CH"] responds with the indices where the code is "CH"
@@ -161,7 +156,7 @@
 </details>	
 <details><summary>What is meant by composability? </summary>
 
-- An expression (e.g. 1+2) can be part of any other expression (e.g. "from 1 to 1+2".
+- An expression (e.g. 1+2) can be part of any other expression (e.g. "from 1 to 1+2").
 
 </details> 
 	
@@ -220,6 +215,6 @@
 
 - Dataframe-based execution, which uses the dataframe interface (fastest, most constrained)
 - RDD-based execution, on the back of Sparks RDDs (medium, medium)
-- local exucution, like a single-core Java implementation (slowest, most expressive)
+- local execution, like a single-core Java implementation (slowest, most expressive)
 
 </details>
