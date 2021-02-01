@@ -69,7 +69,7 @@
 </details>
 <details><summary>What is the chainrule in the multivariate case? </summary>
 
-- (&nabla;z_k)/(&nabla;x_i)=&lambda;_y(&nabla;z_k)/(&nabla;y_j)(&nabla;y_j)/(&nabla;x_i)
+- (&nabla;z_k)/(&nabla;x_i)=&Sigma;_y(&nabla;z_k)/(&nabla;y_j)(&nabla;y_j)/(&nabla;x_i)
 
 </details>
 <details><summary>What is a hypergraph? </summary>
@@ -137,14 +137,14 @@
 <details><summary>What are the three axioms of probability? (in the discrete case) </summary>
 
 1. **Non-negativity** &rightarrow; p(X=x)>= 0
-1. **Sums to 1** &rightarrow; &lambda;_x p(X=x) =1
+1. **Sums to 1** &rightarrow; &Sigma;_x p(X=x) =1
 1. **Countable Additivity** &rightarrow; p(x **or** y)=p(x)+p(y)-p(x **and** y)
 
 </details>
 <details><summary>What is marginalisation of a joint probability? </summary>
 
 - We *integrate out* one variable of the probability:
-	- p(x)=&lambda;_y p(x,y)
+	- p(x)=&Sigma;_y p(x,y)
 
 </details>
 <details><summary>What is the formula for a conditional property? </summary>
@@ -155,7 +155,7 @@
 <details><summary>What is Bayes' Rule? </summary>
 
 - posterior=(likelihood\*prior)/evidence
-- p(y|x)=(p(x|y)p(y))/(&lambda;_y p(x|y)p(y))
+- p(y|x)=(p(x|y)p(y))/(&Sigma;_y p(x|y)p(y))
 
 </details>
 <details><summary>What are the necessary conditions for two random variables to be independent? </summary>
@@ -172,7 +172,7 @@
 </details>
 <details><summary>What is the expectation of f(x)? </summary>
 
-- E[f(x)]=&lambda;_x f(x)p(x)
+- E[f(x)]=&Sigma;_x f(x)p(x)
 
 </details>
 <details><summary>What are the three expectation rules? </summary>
@@ -200,7 +200,7 @@
 <details><summary>What is the general form of a log linear model/the exponential family? And can you explain the parts? </summary>
 
 - p(y|x,&theta;)=1/Z(&theta;)h(y)exp(&theta;\*&phi;(x,y))
-	- Z(&theta;) &rightarrow; **partition function**, so that it sums to 1, Z(&theta;)= &lambda; _y exp(&theta; \* &phi;(x,y)) 
+	- Z(&theta;) &rightarrow; **partition function**, so that it sums to 1, Z(&theta;)= &Sigma; _y exp(&theta; \* &phi;(x,y)) 
 	- h(y) &rightarrow; determines the **support**/ exact zeros in the model.
 	- &theta; are the **canonical parameters**/ weights
 	- &phi;(x,y) are the **sufficient statistics**/ score
@@ -243,14 +243,14 @@
 </details>
 <details><summary>What happens at the global minimum of the log likelihood of a log linear probability? </summary>
 
-- L=-&Lambda;_n log(p(y_n|x_n,&theta;), for p being in the log linear model.
-- &nabla;L(&theta;)=&Lambda;_n=&phi;(x_n,y_n)-&Lambda;_n&Lambda;_y' p(y'|y_n, &theta;)&phi;(x_n,y')=0
+- L=-&Sigma;_n log(p(y_n|x_n,&theta;), for p being in the log linear model.
+- &nabla;L(&theta;)=&Sigma;_n=&phi;(x_n,y_n)-&Sigma;_n&Sigma;_y' p(y'|y_n, &theta;)&phi;(x_n,y')=0
 	- **Expectation matching** &rightarrow; the observed feature counts on the left are equal to the expected feature count on the right.
 	
 </details>
 <details><summary>What is the definition of the softmax function? </summary>
 
-- softmax(h,y,T)=exp(exp(h_y/T))/&Lambda;_y' exp(h_y'/T), for h_y = &theta;\*&phi;(x,y)
+- softmax(h,y,T)=exp(exp(h_y/T))/&Sigma;_y' exp(h_y'/T), for h_y = &theta;\*&phi;(x,y)
 	- *T* being the temperature
 	- The higher *T*, the better spread the probability mass is.
 		- In the case of 0 (softmax) all probability mass is on the maximum
@@ -259,7 +259,7 @@
 </details>
 <details><summary>What is the gradient of the log-softmax function? </summary>
 
-- &nabla;_&theta; log(softmax(&theta;&phi;(x,y),y)=f(x,y)-E_y'\[f(x,y')\] for y' being chosen according to the softmax
+- &nabla;_&theta; log(softmax(&theta;\*&phi;(x,y),y)=&phi;(x,y)-E_y'\[&phi;(x,y')\] for y' being chosen according to the softmax
 
 </details>
 <details><summary>What are the benefits of the exponential family? </summary>
@@ -278,7 +278,7 @@
 </details>
 <details><summary>What is the definition of entropy? </summary>
 
-- H(p)=-&Lambda;_x p(x)log(p(x))
+- H(p)=-&Sigma;_x p(x)log(p(x))
 
 </details>
 
@@ -328,14 +328,14 @@
 	- &sigma; is a non-linear function, e.g. the sigmoid
 	- W^(l) are linear multiplications/**projection layers** with the weights of that layer (*l*)
 	- e(x) is the embedding of x
-- p(y|x)=exp(h^(N)_y)/(&lambda;_y' exp(h^(N)_y'))
+- p(y|x)=exp(h^(N)_y)/(&Sigma;_y' exp(h^(N)_y'))
 	- the softmax on the last layer
 
 </details>
 <details><summary>What and how are we training an MLP? </summary>
 
 - We learn the weights and the embedding by maximizing the log-likelihood of the training data with a gradient based method (gradient descent or Newton's method is also possible)
-- TO get the gradient one can use backprop.
+- To get the gradient one can use backprop.
 
 </details>
 <details><summary>What is a perceptron? </summary>
@@ -362,7 +362,7 @@
 <details><summary>What is the skip-gram training objective? </summary>
 
 - Estimate the central word, given the words in a window around it/context.
-- Maximize p(*word*|*context*)=1/Z(*context*)\*exp(e_wrd(word)\*e_ctx(context))
+- Maximize p(*word*|*context*)=1/Z(*context*)\*exp(e_wrd(*word*)\*e_ctx(*context*))
 	- for e_wrd being the central embedding and e_ctx being the context embedding
 
 </details>
@@ -387,7 +387,7 @@
 
 <details><summary>What is the tf-idf model? </summary>
 
-- tf(token,doc)\df(token,corpus)
+- tf(token,doc)/df(token,corpus)
 	- **tf** &rightarrow; term/token frequency, how often have we seen the term in the doc
 	- **df** &rightarrow; document frequency, how often have we seen the term in the corpus?
 
@@ -446,10 +446,10 @@
 </details>
 <details><summary>What is the architecture of a RNN model? </summary>
 
-- p(y_t|y_<t)=exp(&theta;_y_t\*h_t)/&Lambda;_y' exp(&theta;_y'\*h_t)
+- p(y_t|y_<t)=exp(&theta;_y_t\*h_t)/&Sigma;_y' exp(&theta;_y'\*h_t)
 	- y_t is the current token
 	- y_<t is the history
-	- **current embedding** x_t=&phi;_y_t
+	- **current embedding** x_t=&Phi;_y_t
 	- **hidden state** h_t=f(x_t,h_t-1)
 
 </details>
@@ -465,7 +465,7 @@
 </details>
 <details><summary>What is Lidstone or &lambda;-smoothing? </summary>
 
-- p_smooth(y_t|y_t-1)=(count(y_t-1,y_t)+&lambda;)/(&Lambda;_y' count(y_t-1,y')+V&lambda;)
+- p_smooth(y_t|y_t-1)=(count(y_t-1,y_t)+&lambda;)/(&Sigma;_y' count(y_t-1,y')+V&lambda;)
 
 </details>
 <details><summary>What are the benefits of &lambda;-smoothing? </summary>
@@ -496,7 +496,7 @@
 
 1. Higher means better.
 1. The score decomposes additively
-	- score(*tags*, *words*)=&Lambda;_n score(<*tag*_n-1,*tag*_n>,words)
+	- score(*tags*, *words*)=&Sigma;_n score(<*tag*_n-1,*tag*_n>,words)
 1. If score is parametrised, it should be differentiable to allow backprop.
 
 </details>
@@ -535,7 +535,7 @@
 <details><summary>What are the five parts of a semiring? </summary>
 
 - *A* &rightarrow; the alphabet
-- + &rightarrow; an additive function
+- \+ &rightarrow; an additive function
 - x &rightarrow; a multiplicative function
 - 0 &rightarrow; an identity of the addition (also an annihilator for x)
 - 1 &rightarrow; an identity of the multiplication
@@ -564,8 +564,8 @@
 <details><summary>How do CRFs correspond to a softmax? </summary>
 
 - CRFs are a big structured softmax.
-	- **CRF**: max(&Sigma;_i(score(tokens^(i),words^(i))- log( &Sigma;_{tag' in T^N} exp(score(tag',words^(i))))))
-	- **Softmax**: max(&Sigma;_i(score(tokens^(i),words^(i))- T\*log( &Sigma;_{tag' in T^N} exp(score(tag',words^(i))/T))))
+	- **CRF**: max(&Sigma;\_i(score(tokens^(i),words^(i))- log(&Sigma;_{tag' in T^N} exp(score(tag',words^(i))))))
+	- **Softmax**: max(&Sigma;\_i(score(tokens^(i),words^(i))- T\*log(&Sigma;_{tag' in T^N} exp(score(tag',words^(i))/T))))
 		- Which is equal if T approaches 0
 		
 </details>
@@ -710,7 +710,7 @@
 <details><summary>What is the edge-factored assumption? </summary>
 
 - The score function is a multiplicative sum of scores:
-	- p(tags|words)=1/Z &Lambda;_edge(i&leftarrow;j) exp(score(i,j,words))exp(score(root,words))
+	- p(tags|words)=1/Z &Sigma;_edge(i&leftarrow;j) exp(score(i,j,words))exp(score(root,words))
 
 </details>
 <details><summary>What is in the cells of an adjacency matrix? </summary>
@@ -728,7 +728,7 @@
 
 - The Laplacian matrix L with L_ij:
 	- *i*=1 &rightarrow; p_j
-	- *i*=*j* &rightarrow; &Lambda;_i'=1^n A_i'j, for i' unequal to i
+	- *i*=*j* &rightarrow; &Sigma;_i'=1^n A_i'j, for i' unequal to i
 	- *else* &rightarrow; -A_ij
 	With: 
 		- A_ij=exp(score(i,j,words)).
@@ -767,13 +767,14 @@
 <details><summary>What is the directed MST algorithm and what is it's runtime? </summary>
 
 - Runs in O(n^2)
+
 ![MST algorithm](./images/MST.PNG)
 
 </details>
 
-## Lecture 10
+## Lecture 09
 
-<details><summary>Why is transliteration? </summary>
+<details><summary>What is transliteration? </summary>
 
 - Spelling one word/string in another alphabet, e.g. written letters to phonetic letters.
 
@@ -785,8 +786,8 @@
 </details>
 <details><summary>What is the format of a transition in a weighted finite state transducer (WFST)? </summary>
 
-- *output token***:***input token***/***weight*
-	- e.g. *d***:***data***/***1*
+- *output token* **:** *input token* **/** *weight*
+	- e.g. *d* **:** *data* **/** *1*
 
 </details>
 <details><summary>In WFST, what does &epsilon; mean? </summary>
@@ -836,16 +837,16 @@
 - *j* &rightarrow; end of the path 
 
 </details>
-<details><summary>Derive a closed form solution for the Kleene closure of a matrix W\*. </summary>
+<details><summary>Derive a closed form solution for the Kleene closure of a matrix W^*. </summary>
 
 - W^k=W^k-1\*W
-- W**\***=&Sigma;_k=0^&infin; W^k
-- W**\***=I+W\*&Sigma;_k=0^&infin; W^k=I+W\*W**\*** &rightarrow; W**\***=(I-W)^-1 
+- W^\* =&Sigma;_k=0^&infin; W^k
+- W^\* =I+W\*&Sigma;_k=0^&infin; W^k=I+W\* W^\* &rightarrow; W^\* =(I-W)^-1 
 
 </details>
 <details><summary>What makes a semiring closed? </summary>
 
-- A semiring is closed if there exists a Kleene operator a\* or W\* in our case.
+- A semiring is closed if there exists a Kleene operator a\* or W^\* in our case.
 
 </details>
 <details><summary>How does FW have to be adjusted to compute Z? </summary>
@@ -855,10 +856,10 @@
 </details>
 <details><summary>How can the whole normalizing constant of the transliteration problem be computed in matrix form? </summary>
 
-- &alpha;^T(&Sigma;_&omega; W^&omega;)\* &beta;
+- &alpha;^T(&Sigma;_&omega; W^&omega;)^\* &beta;
 	- &alpha; being the starting weights
 	- &beta; being the final weights
-	- &omega; being an output signal (+ &epsilon;
-	- (&Sigma;_&omega; W^&omega;)\* being the closure of all transitions
+	- &omega; being an output signal (+ &epsilon;)
+	- (&Sigma;_&omega; W^&omega;)^\* being the closure of all transitions
 
 </details>
