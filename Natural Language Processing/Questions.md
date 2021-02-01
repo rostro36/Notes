@@ -770,3 +770,95 @@
 ![MST algorithm](./images/MST.PNG)
 
 </details>
+
+## Lecture 10
+
+<details><summary>Why is transliteration? </summary>
+
+- Spelling one word/string in another alphabet, e.g. written letters to phonetic letters.
+
+</details>
+<details><summary>What is transduction? </summary>
+
+- Aligning two sequences.
+
+</details>
+<details><summary>What is the format of a transition in a weighted finite state transducer (WFST)? </summary>
+
+- *output token***:***input token***/***weight*
+	- e.g. *d***:***data***/***1*
+
+</details>
+<details><summary>In WFST, what does &epsilon; mean? </summary>
+
+- &epsilon; is the empty symbol.
+
+</details>
+<details><summary>What are the five parts of a WFST? </summary>
+
+1. **Q** &rightarrow; finite set of states
+	- including initial and ending state
+1. &Sigma; &rightarrow; input vocabulary/alphabet
+1. &Omega; &rightarrow; output vocabulary/alphabet
+1. &lambda; &rightarrow; function mapping (initial) states to initial scores
+1. &rho; &rightarrow; function mapping (final) states to final scores
+1. &delta; &rightarrow; function mapping transitions to scores
+
+</details>
+<details><summary>What is the function we tried to compute with the WFST in the lecture? </summary>
+
+- p(*parse*|*original*) of an unambiguous WFST.
+
+</details>
+<details><summary>What is the yield_top and what is yield_bottom of a WFST path? </summary>
+
+- yield_top is the concatenation of the top/input symbols.
+- yield_bottom is the concatenation of the bottom/output symbols.
+
+</details>
+<details><summary>In our model, what is the score of a path? </summary>
+
+- The score is the sum of the weights of all used transitions, including initial and final state.
+
+</details>
+<details><summary>What does the Floyd-Warshall(FW) algorithm compute? What does it not compute? </summary>
+
+- FW is a dynamic programming algorithm that finds the length of the shortest path (without negative cycles).
+- Vanilla FW does not return the path himself, only the length.
+
+</details>
+<details><summary>What is Floyd-Warshall algorithm and what is it's runtime? </summary>
+
+![Floyd-Warshall](./images/Floyd_Warshall.PNG)
+- The runtime is O(n^3)
+- *k* &rightarrow; length of the path
+- *i* &rightarrow; start of the path
+- *j* &rightarrow; end of the path 
+
+</details>
+<details><summary>Derive a closed form solution for the Kleene closure of a matrix W\*. </summary>
+
+- W^k=W^k-1\*W
+- W**\***=&Sigma;_k=0^&infin; W^k
+- W**\***=I+W\*&Sigma;_k=0^&infin; W^k=I+W\*W**\*** &rightarrow; W**\***=(I-W)^-1 
+
+</details>
+<details><summary>What makes a semiring closed? </summary>
+
+- A semiring is closed if there exists a Kleene operator a\* or W\* in our case.
+
+</details>
+<details><summary>How does FW have to be adjusted to compute Z? </summary>
+
+![Floyd-Warshall-Z](./images/Floyd_Warshall_Z.PNG)
+
+</details>
+<details><summary>How can the whole normalizing constant of the transliteration problem be computed in matrix form? </summary>
+
+- &alpha;^T(&Sigma;_&omega; W^&omega;)\* &beta;
+	- &alpha; being the starting weights
+	- &beta; being the final weights
+	- &omega; being an output signal (+ &epsilon;
+	- (&Sigma;_&omega; W^&omega;)\* being the closure of all transitions
+
+</details>
