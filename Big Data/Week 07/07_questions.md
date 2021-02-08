@@ -122,13 +122,13 @@
 - They are kept in memory for as long as possible, if the memory is full, they will get spilled to memory in a L-Tree as a HFile in HBase.	
 
 </details>
-<details><summary>How are intermediary results get transmitted? </summary>
+<details><summary>How are intermediary results getting transmitted? </summary>
 
 - Mappers open an http-server, which then get queried by reducers. 	
 
 </details>	
 <details><summary>Why is this transmission method chosen? </summary>
 
-- Like this reducers can control their load and are not swamped by incoming data. 	
+- Like this, reducers can control their load and are not swamped by incoming data. 	
 
 </details>	

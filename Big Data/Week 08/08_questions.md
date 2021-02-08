@@ -83,7 +83,7 @@
 </details>
 <details><summary>What is the job of the NodeManager? </summary>
 
-- The NM is the head of the computation node. And report the state of his node and the job it runs, also does some security check before starting a job. 	
+- The NM is the head of the computation node. And reports the state of his node and the job it runs, also does some security check before starting a job. 	
 
 </details>
 

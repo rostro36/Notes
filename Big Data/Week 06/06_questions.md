@@ -65,7 +65,7 @@
 - Null
 
 </details>
-<details><summary>What are the 3 cardinality types? </summary>
+<details><summary>What are the 4 cardinality types? </summary>
 
 - One (required)
 - \* &rightarrow; zero or more (repeated)

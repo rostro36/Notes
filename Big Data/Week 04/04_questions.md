@@ -204,6 +204,6 @@
 </details>
 <details><summary>How are namespaces used? </summary>
 
-- <head:person xmlns:head="www.head.com"><head:toe\><\head:person>
+- \<head:person xmlns:head="www.head.com"\> \<head:toe/\>\<head:person\>
 
 </details>

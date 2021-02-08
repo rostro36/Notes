@@ -34,7 +34,7 @@
 </details>
 <details><summary>OLTP vs OLAP </summary>
 
-![OLTP vs OLAP](../images/13_OLAP_VS_OLTP.PNG)
+![OLTP vs OLAP](../images/13_OLAP_vs_OLTP.PNG)
 
 </details>
 

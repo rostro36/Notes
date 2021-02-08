@@ -136,7 +136,7 @@
 </details>
 <details><summary>What is response time? </summary>
 
-- It is the time until the results; the last operation= latency+transfer\**operations*
+- It is the time until the full results come in; the last operation= latency+transfer\**operations*
 
 </details>
 <details><summary>How is speed-up defined? </summary>
