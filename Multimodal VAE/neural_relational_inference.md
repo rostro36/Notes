@@ -1,6 +1,6 @@
 # [Neural Relational Inference for Interacting Systems](https://arxiv.org/abs/1802.04687)
 ## Introduction
-Often a system consists of multiple entities that depend on each other, like a player in a football game that moves according to the other players around him.
+Often, a system consists of multiple entities that depend on each other, like a player in a football game that moves according to the other players around him.
 
 These systems can be *implicitly* modelled with a graph and then embedded using *graph neural networks* (GNNs), that send messages over the graph.
 
@@ -9,7 +9,7 @@ These systems can be *implicitly* modelled with a graph and then embedded using 
 There are two types of messages in a graph:
 - node_i-to-edge_{ij} sends ![h_\{ij\}^l=f_e^l\(\[h_i^l,h_j^l,x_\{ij}\]\)](https://latex.codecogs.com/gif.latex?h_%7Bij%7D%5El%3Df_e%5El%5C%28%5C%5Bh_i%5El%2Ch_j%5El%2Cx_%7Bij%7D%5D%29)
 	- *l* is the layer
-	- \[] is a concatenation
+	- \[\] is a concatenation
 	- *h* are the embeddings of the nodes
 	- *x* is used for auxiliary edge/node features e.g. the type of edge/node
 	- *f* is a edge/node-specific (neural net)-function
@@ -17,9 +17,10 @@ There are two types of messages in a graph:
 ## Neural relational inference (NRI) model
 The NRI model has two parts:
 - an **encoder** that predicts the (latent) interactions given the (real) trajectories
+- the latent dimension still is a graph
 - a **decoder** that learns the (real) dynamical model given the (latent) interaction graph
 
-As **input** there are *N* objects (nodes) at *T* times, which are denoted by *x_n^t*. We assume that the dynamics can be modelled by a GNN given an unknown graph *z*, with *z_{ij}* being an edge in that graph.
+As **input** there are *N* objects (nodes) at *T* times, which are denoted by *x_n^t*. We assume that the dynamics can be modelled by a GNN given an unknown graph *z*, with *z\_{ij}* being an edge in that graph.
 
 ![NRI.PNG](./images/NRI.PNG)
 
@@ -27,7 +28,7 @@ A **prior** can be used on the labels, to enforce sparseness of the graph.
 
 The model tries to predict many time steps, as only one time step might be too minimal and off to rounding errors, also the model does not try to predict *x^0*. 
 ### Encoder
-The task of the encoder is to learn the correct of the *K* edge types for *z_{ij}*.
+The task of the encoder is to learn the correct of the *K* edge types for *z\_{ij}*.
 
 This is done with a softmax on a GNN of the fully-connected graph.
 

@@ -19,9 +19,7 @@ There are two ways to deal with this:
 - create a virtual, bipartite graph, where the edges are also nodes and there is an edge from the original node to the original edge. There are no edges between two original nodes. 
 - adapt different weight matrices for different kinds of edges.
 
-**Dynamic** have a static graph structure, but dynamic input signals. Usually in the first step the graph structure is inferred and then the outputs are fed into a a sequence model like seq2seq or CNNs. 
-
-
+**Dynamic** graphs have a static graph structure, but dynamic input signals. Usually in the first step the graph structure is inferred and then the outputs are fed into a a sequence model like seq2seq or CNNs. 
 ## Vanilla graph neural networks
 Vanilla graph neural networks are designed for *undirected* graphs.
 
@@ -37,7 +35,7 @@ The **loss** is defined as the sum of all the supervised labels minus the output
 ### Limitations
 1. it is inefficient to update the states of nodes *iteratively* for a fixed point.
 1. vanilla GNNs use the same *f* in all layers, which is not modern any more, where the weights can adapt over layers. 
-1. edges are under represented and do not have a good hidden state.
+1. edges are underrepresented and do not have a good hidden state.
 1. getting a lot of information washes out the nodes and makes it hard to distinguish them.
 ## Propagation types
 ### Important matrices
@@ -47,12 +45,12 @@ The **loss** is defined as the sum of all the supervised labels minus the output
 ### Convolution
 There is a difference between *spectral* approaches, that work with a spectral representation and *non-spectral*\(spatial) approaches. Spectral approaches only work a graph structure and can not directly be applied to a graph with a different structure. In contrast, non-spectral approaches have to figure out a way to deal with different sizes of neighbourhoods, while still maintaining local invariances of CNNs.
 - spectral models
-	- **Spectral network** uses a convolution operation in the Fourier domain by computing the eigendecomposition of the graph Laplacian. And then use inference as *g*_&theta; &times; *x*=*U* *g*_&theta;(&Lambda;)*U*^T *x*, but this is computationally intense and non-spatially localised \(&times; here is a convolution\).
-	- **ChebNet** is also a spectral network, but assumes *g*_&theta; &times; *x* can be approximated with a [Chebyshev polynomial](https://en.wikipedia.org/wiki/Chebyshev_polynomials) \(&Sigma;_\{o<order\}&theta;_o T_o\(~L\)x\), with ~L=2\/&lambda; L-I_N, &lambda; is the biggest eigenvalue of L. The Chebyshev approximation enables to not costly calculate the eigenvectors of the Laplacian. 
+	- **Spectral network** uses a convolution operation in the Fourier domain by computing the eigendecomposition of the graph Laplacian. And then use inference as *g*\_&theta;&times;*x*=*U* *g*\_&theta;(&Lambda;)*U*^T *x*, but this is computationally intense and non-spatially localised \(&times; here is a convolution\).
+	- **ChebNet** is also a spectral network, but assumes *g*\_&theta; &times; *x* can be approximated with a [Chebyshev polynomial](https://en.wikipedia.org/wiki/Chebyshev_polynomials) \(&Sigma;_\{o<order\}&theta;\_o T\_o\(~L\)x\), with ~L=2\/&lambda; L-I_N, &lambda; is the biggest eigenvalue of L. The Chebyshev approximation enables to not costly calculate the eigenvectors of the Laplacian. 
 	- **Graph Convolution Network \(GCN\)** limits the layer-wise convolution to *order*=1 and approximates &lambda;=2, which makes it harder to overfit on the local neighbourhood structures. This leaves *g*_&theta; &times; *x* to &theta;\(3 *I_N*-2 *L*\)*x*. This model leads to numerical instability, but can be renormalised to fix that.
-	- **Adaptive Graph Convolution Networks \(AGCN\)** work similar to GCNs, but learn a*residual* graph Laplacian, that they add to the original Laplacian matrix.
+	- **Adaptive Graph Convolution Networks \(AGCN\)** work similar to GCNs, but learn a *residual* graph Laplacian, that they add to the original Laplacian matrix.
 - non-spectral models
-	- **Neural FPs** use different weight matrices \(W\_t^\{\|Neighbourhood\|\}\) for nodes with different degrees \(\|Neighbourhood\|\), but it can not applied to large-scale graphs with many node degrees.
+	- **Neural FPs** use different weight matrices \(W\_t^\{\|Neighbourhood\|\}\) for nodes with different degrees \(\|Neighbourhood\|\), but it can not be applied to large-scale graphs with many node degrees.
 
 		x=h\_v^\{t-1\}+&Sigma;\_\{*n* in Neighbourhood\}h\_n^{t-1}
 
@@ -99,7 +97,7 @@ This can also be extended to **multi-head attention** with concatenations\/summi
 
 The benefits of that is the parallelisability, the degree-invariance and that it can easily be applied to inductive learning problems.
 ### Skip connection
-Sometimes deeper networks, that know more about the neighbourhood perform worse than the shallower networks, which have more important information and are less susceptible to noise. To alleviate that there are skip connections, that pass the some computations.
+Sometimes deeper networks, that know more about the neighbourhood perform worse than the shallower networks, which have more important information and are less susceptible to noise. To alleviate that, there are skip connections, that pass the some computations.
 
 *T*\(*h*^*t*\)=&sigma;\(*W*^*t* *h*^*t*+*b*^*t*\)
 
@@ -110,13 +108,13 @@ Much like in CNNs, there are pooling layers. **edge conditioned convolution \(CN
 **DIFFPOOL** uses the function *S*^*l*=softmax\(GNN_\{*l*,pool\}\(*A*^*l*,*X*^*l*\)\)
 ## Training methods
 ### Vanilla GCN
-The vanilla GCN needs teh full Laplacian, what is computational consuming for large graphs. Also the amount of influences grows exponentially with the layers \(**receptive field expansion**\) and finally GCN is trained independently for a fixed graph, which makes it impossible to use inductive learning.
+The vanilla GCN needs the full Laplacian, what is computational consuming for large graphs. Also the amount of influences grows exponentially with the layers \(**receptive field expansion**\) and finally GCN is trained independently for a fixed graph, which makes it impossible to use inductive learning.
 ### Sampling
 GraphSAGE, which was also explained uses sampling, additionally it changes the Laplacian with learnable aggregation functions, which are easier to compute and generalise better. Sampling is used to tackle receptive field expansion. This sampling can either be uniformly distributed like in GraphSAGE or weighted like in PinSage. Instead of sampling the neighbours, one can also sample the whole receptive field directly to speed up and reduce variance.
 ### Receptive field control
 Uses the historical activations as a control variate to get a good approximation of the receptive field.
 ### Unsupervised training \(Graph Auto-Encoder\)
-Instead of using a clear-cut training method graph autoencoders use normal GCNs to go to a vector representation and from this vector representation as close back to the original adjacency matrix.
+Instead of using a clear-cut training method, graph auto-encoders use normal GCNs to go to a vector representation and from this vector representation as close back to the original adjacency matrix.
 
 *Z*=GCN\(*X*,*A*\)
 
@@ -131,7 +129,7 @@ There are two phases:
 	1. *y*=R\(\{*h\_v*^*T*, for *v* in *G*\}\)
 ### Non-local neural network \(NLNN\)
 NLNNs were introduced to capture long-range dependencies with deep neural nets. The non-local operation is a generalisation of the classical non-local mean operation in computer vision and computes the response at a position as a weighted sum of features at all positions, which is another way to say *self-attention*. The operation is defined as:
-- *h'\_i*=1\/C\(*h*\)&Lambda;_\{*j* in *G*\} *f*\(*h\_i*,*h\_j*\)*g*\(*h\_j*\)
+- *h'\_i*=1\/C\(*h*\)&Sigma;\_\{*j* in *G*\} *f*\(*h\_i*,*h\_j*\)*g*\(*h\_j*\)
 	- *f* &rightarrow; scalar, could be a Gaussian, an embedded Gaussian \(*self-attention*\),dot-product, concatenation with a ReLU
 	- *g* &rightarrow; transformation of input *h\_j*
 	- *C*\(*h*\) &rightarrow; normalisation, has to be adjusted to *f*
@@ -149,9 +147,9 @@ The updates are performed in **GN blocks** with three *update* functions &phi; a
 	- node update &rightarrow; *h'\_i*= &phi;\_h\(*ê'\_i*,*h\_i*,*u*\)
 	- global update &rightarrow; *u'*= &phi;\_u\(*ê'*,*^h*',*u*\) 
 - aggregations
-	- node aggregation &rightarrow; *ê'\_i*=&rho;\_\{e h\}\(*E'\_i*\), where *E'\_i* are the updated incoming edges
-	- global edge aggregation &rightarrow; *ê'*=&rho;\_\{e u\}\(*E'*\), where both *E'\_i* and *ê'* are global
-	- global node aggregation &rightarrow; *^h'*=&rho;\_\{h u\}\(*H'*\), where both *H'\_i* and *^h'* are global
+	- node aggregation &rightarrow; *ê'\_i*=&rho;\_\{e,h\}\(*E'\_i*\), where *E'\_i* are the updated incoming edges
+	- global edge aggregation &rightarrow; *ê'*=&rho;\_\{e,u\}\(*E'*\), where both *E'\_i* and *ê'* are global
+	- global node aggregation &rightarrow; *^h'*=&rho;\_\{h,u\}\(*H'*\), where both *H'\_i* and *^h'* are global
 - there is no strictly enforced rule on the order of the updates and the aggregations
 
 The graph networks adhere to some **design principles**:

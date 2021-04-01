@@ -3,7 +3,7 @@
 ## Introduction
 Multimodal data is expensive and sparse, which leads to a weakly supervised setting of having only a small set of examples with all observations present, but having access to a larger dataset with one (or a subset of) modalities.
 
-With multiple modalities and/or missing data, we would normally need every possible combination of inference networks (encoders), which is exponential. Assuming conditional independence among the modalities (p_&theta;(x_1,x_2,x_3,...,x_n,z)=p(z)p_&theta;(x_1|z)p_&theta;(x_2|z)p_&theta;(x_3|z)p_&theta;(x_4|z)...p_&theta;(x_n|z)) one can use the product-of-experts, which reduces the complexity back to linear.
+With multiple modalities and/or missing data, we would normally need every possible combination of inference networks (encoders), which is exponential. Assuming conditional independence among the modalities (![p_&theta;(x_1,x_2,x_3,...,x_n,z)=p(z)p_&theta;(x_1|z)p_&theta;(x_2|z)p_&theta;(x_3|z)p_&theta;(x_4|z)...p_&theta;(x_n|z)](https://latex.codecogs.com/gif.latex?p_%5Ctheta%28x_1%2Cx_2%2Cx_3%2C%5Cdots%2Cx_n%2Cz%29%3Dp%28z%29p_%5Ctheta%28x_1%7Cz%29p_%5Ctheta%28x_2%7Cz%29p_%5Ctheta%28x_3%7Cz%29p_%5Ctheta%28x_4%7Cz%29%5Cdots%20p_%5Ctheta%28x_n%7Cz%29)) one can use the product-of-experts, which reduces the complexity back to linear.
 
 The inference networks can be trained separately, but the generative model requires joint observations.
 
@@ -13,28 +13,24 @@ A VAE jointly trains a generative model, from latent variables to observations (
 
 A VAE is of the form p_&theta;(x,z)=p(z)p_&theta;(x|z), with p(z) being a (mostly Gaussian) prior and p_&theta;(x|z) being a neural net composed of a simple likelihood. We optimise the tractable [ELBO](https://en.wikipedia.org/wiki/Evidence_lower_bound) instead of the intractable marginal likelihood:
 
-[ELBO](https://en.wikipedia.org/wiki/Evidence_lower_bound) (&theta;,&phi;,*X*^*i*)=E_q_&phi;(*z*|*X*^*i*)\[log(p_&theta;(*X*^*i*|*z*))]-[KL](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) (q_&phi;(*z*|*X*^*i*)||p_&theta;(*z*))
+![ELBO(&theta;,&phi;,*X*^*i*)=E_q_&phi;(*z*|*X*^*i*)\[log(p_&theta;(*X*^*i*|*z*))\]-KL(q_&phi;(*z*|*X*^*i*)||p_&theta;(*z*))](https://latex.codecogs.com/gif.latex?ELBO%28%5Ctheta%2C%5Cphi%2CX%5Ei%29%3DE_%7Bq_%5Cphi%28z%7CX%5Ei%29%7D%5C%5Blog%28p_%5Ctheta%28X%5Ei%7Cz%29%29%5D-KL%28q_%5Cphi%28z%7CX%5Ei%29%7C%7Cp_%5Ctheta%28z%29%29)
 
 ## Deriving the joint posterior
 We want to approximate the true posterior:
 
-p(z|x_1, ..., x_n)=p(x_1, ..., x_n|z)p(z)/p(x_1, ...,x_n)
+![p(z|x_1, ..., x_n)=p(x_1, ..., x_n|z)p(z)/p(x_1, ...,x_n)](https://latex.codecogs.com/gif.latex?p%28z%7Cx_1%2C%5Cdots%2C%20x_n%29%3D%5Cfrac%7Bp%28x_1%2C%5Cdots%2Cx_n%7Cz%29p%28z%29%7D%7Bp%28x_1%2C%5Cdots%2Cx_n%29%7D)
 
 Here we need conditional independence:
 
-	p(z)/p(x_1, ...,x_n)&Pi;_{i=1}^N p(x_i|z)
-
-	=p(z)/p(x_1,...,x_n)&Pi;_{i=1}^N p(z|x_i)p(x_i)/p(z)=&Pi; p(z|x_i)p(x_i)/p(z)=&Pi;_{i=1}^N p(z|x_i)/&Pi;_{i=1}^{N-1}p(z) &Pi;_{i=1}^N p(x_i)/p(x_1, ...,x_n)
-
-	&approx;&Pi;\_{i=1}^N p(z|x_i)/&Pi;\_{i=1}^{N-1} p(z)
+![p(z)/p(x_1, ...,x_n)&Pi;_{i=1}^N p(x_i|z)=p(z)/p(x_1,...,x_n)&Pi;_{i=1}^N p(z|x_i)p(x_i)/p(z)=&Pi; p(z|x_i)p(x_i)/p(z)=&Pi;_{i=1}^N p(z|x_i)/&Pi;_{i=1}^{N-1}p(z) &Pi;_{i=1}^N p(x_i)/p(x_1, ...,x_n)&approx;&Pi;\_{i=1}^N p(z|x_i)/&Pi;\_{i=1}^{N-1} p(z)](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bp%28z%29%7D%7Bp%28x_1%2C%20...%2Cx_n%29%7D%5Cpi_%7Bi%3D1%7D%5EN%20p%28x_i%7Cz%29%20%3D%5Cfrac%7Bp%28z%29%7D%7Bp%28x_1%2C...%2Cx_n%29%7D%5Cpi_%7Bi%3D1%7D%5EN%5Cfrac%7Bp%28z%7Cx_i%29p%28x_i%29%7D%7Bp%28z%29%7D%20%5C%5C%20%3D%5Cfrac%7B%5Cpi_%7Bi%3D1%7D%5EN%20p%28z%7Cx_i%29%7D%7B%5Cpi_%7Bi%3D1%7D%5E%7BN-1%7Dp%28z%29%20%7D%20%5Cfrac%7B%5Cpi_%7Bi%3D1%7D%5EN%20p%28x_i%29%7D%7Bp%28x_1%2C%5Cdots%2Cx_n%29%7D%20%5Capprox%5Cfrac%7B%5Cpi_%7Bi%3D1%7D%5EN%20p%28z%7Cx_i%29%7D%7B%5Cpi_%7Bi%3D1%7D%5E%7BN-1%7D%20p%28z%29%7D)
 
 If we assume p(z|x_i) is properly contained in q(z|x_i), then one can construct **MVAE-Q**:
 
-q(z|x_1, ..., x_n)=&Pi;\_{i=1}^N q(z|x_i)/&Pi;\_{i=1}^{N-1}p(z)
+![q(z|x_1, ..., x_n)=&Pi;\_{i=1}^N q(z|x_i)/&Pi;\_{i=1}^{N-1}p(z)](https://latex.codecogs.com/gif.latex?q%28z%7Cx_1%2C%5Cdots%2C%20x_n%29%3D%5Cfrac%7B%5Cpi_%7Bi%3D1%7D%5EN%20q%28z%7Cx_i%29%7D%7B%5Cpi_%7Bi%3D1%7D%5E%7BN-1%7Dp%28z%29%7D)
 
 If we approximate p(z|x_i) with q(z|x_i)=ç(z|x_i)p(z) to get the more computationally stable **MVAE**, where ç(z|x_i) is the underlying inference network:
 
-p(z|x_1, ..., x_n)~&Pi;\_{i=1}^N p(z|x_i)/&Pi;\_{i=1}^{N-1} p(z)~&Pi;\_{i=1}^N ç(z|x_i)p(z)/&Pi;\_{i=1}^{N-1} p(z)=p(z) &Pi;\_{i=1}^N ç(z|x_i)
+![p(z|x_1, ..., x_n)~&Pi;\_{i=1}^N p(z|x_i)/&Pi;\_{i=1}^{N-1} p(z)~&Pi;\_{i=1}^N ç(z|x_i)p(z)/&Pi;\_{i=1}^{N-1} p(z)=p(z) &Pi;\_{i=1}^N ç(z|x_i)](https://latex.codecogs.com/gif.latex?p%28z%7Cx_1%2C%5Cdots%2C%20x_n%29%5Capprox%5Cfrac%7B%5Cpi_%7Bi%3D1%7D%5EN%20p%28z%7Cx_i%29%7D%7B%5Cpi_%7Bi%3D1%7D%5E%7BN-1%7D%20p%28z%29%7D%5Capprox%5Cfrac%7B%5Cpi_%7Bi%3D1%7D%5EN%20%5C%5B%5Ctilde%7Bq%7D%28z%7Cx_i%29p%28z%29%5C%5D%7D%7B%5Cpi_%7Bi%3D1%7D%5E%7BN-1%7Dp%28z%29%7D%3Dp%28z%29%5Cpi_%7Bi%3D1%7D%5EN%20%5Ctilde%7Bq%7D%28z%7Cx_i%29)
 
 Where &Pi;\_{i=1}^N ç(z|x_i) is a **product of experts**(PoE) and p(z) is a **prior expert**.
 
