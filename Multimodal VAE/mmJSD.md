@@ -14,17 +14,17 @@ The dataset *X* consists of *N* i.i.d.  samples, where each sample consists of *
 
 Now, the interesting quantity, that we use to fit the model is the (log-)likelihood of the data:
 
-log(p_&theta;({*X*^*i*} *i* < *N*))=&Sigma;_(*i* < *N*) log(p _&theta;(*X*^*i*)),
+![log(p_&theta;({*X*^*i*} *i* < *N*))=&Sigma;_(*i* < *N*) log(p _&theta;(*X*^*i*))](https://latex.codecogs.com/gif.latex?log%28p_%5Ctheta%28%5C%7BX%5E%7B%28i%29%7D%5C%7D_%7Bi%3CN%7D%29%29%3D%5Csum_%7Bi%20%3C%20N%7D%20log%28p_%5Ctheta%28X%5Ei%29%29),
 
-where log(p_&theta;(*X*^*i*))=[KL](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) (q_&phi;(*z*|*X*^*i*)||p_&theta;(*z*|*X*^*i*))+[ELBO](https://en.wikipedia.org/wiki/Evidence_lower_bound) (&theta;,&phi;,*X*^*i*),
+where ![log(p_&theta;(*X*^*i*))=KL(q_&phi;(*z*|*X*^*i*)||p_&theta;(*z*|*X*^*i*))+ELBO(&theta;,&phi;,*X*^*i*)](https://latex.codecogs.com/gif.latex?log%28p_%5Ctheta%28X%5Ei%29%29%3DKL%28q_%5Cphi%28z%7CX%5Ei%29%7C%7Cp_%5Ctheta%28z%7CX%5Ei%29%29&plus;ELBO%28%5Ctheta%2C%5Cphi%2CX%5Ei%29),
 
-with [ELBO](https://en.wikipedia.org/wiki/Evidence_lower_bound) (&theta;,&phi;,*X*^*i*)=E_q_&phi;(*z*|*X*^*i*)\[log(p_&theta;(*X*^*i*|*z*))]-[KL](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) (q_&phi;(*z*|*X*^*i*)||p_&theta;(*z*))
+with ![ELBO(&theta;,&phi;,*X*^*i*)=E_q_&phi;(*z*|*X*^*i*)\[log(p_&theta;(*X*^*i*|*z*))\]-KL(q_&phi;(*z*|*X*^*i*)||p_&theta;(*z*))](https://latex.codecogs.com/gif.latex?ELBO%28%5Ctheta%2C%5Cphi%2CX%5Ei%29%3DE_%7Bq_%5Cphi%28z%7CX%5Ei%29%7D%5C%5Blog%28p_%5Ctheta%28X%5Ei%7Cz%29%29%5C%5D-KL%28q_%5Cphi%28z%7CX%5Ei%29%7C%7Cp_%5Ctheta%28z%29%29)
 
 The benefit of using an ELBO is that it is computationally tractable and therefore also more efficiently optimised.
 
 (Another) hard part now comes from the fact, that we may not know all the modalities and only *K*, so we can not answer the true posterior p_&theta;(*z*|*X*^*i*), but only the variational function q_&phi; _*K*(*z*|*X*^*i* _*K*). With this the ELBO has to be adjusted to:
 
-[ELBO](https://en.wikipedia.org/wiki/Evidence_lower_bound) (&theta;,&phi; _*K*,*X*^*i*)=E_q _&phi; _*K*(*z*|*X*^*i* _*K*)\[log(p _&theta;(*X*^*i*|*z*))]-[KL](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) (q _&phi; _*K*(*z*|*X*^*i* _*K*)||p _&theta;(*z*))
+![ELBO(&theta;,&phi; _*K*,*X*^*i*)=E_q _&phi; _*K*(*z*|*X*^*i* _*K*)\[log(p _&theta;(*X*^*i*|*z*))\]-KL(q _&phi; _*K*(*z*|*X*^*i* _*K*)||p _&theta;(*z*))](https://latex.codecogs.com/gif.latex?ELBO%28%5Ctheta%2C%5Cphi_K%2CX%5Ei%29%3DE_%7Bq_%7B%5Cphi_K%7D%28z%7CX%5Ei_K%29%7D%5C%5Blog%28p_%5Ctheta%28X%5Ei%7Cz%29%29%5C%5D-KL%28q_%7B%5Cphi_K%7D%28z%7CX%5Ei_K%29%7C%7Cp%20_%5Ctheta%28z%29%29)
 
 ## Scalability through Product-of-Experts
 Computing the probability for each combination of the *M* modes gives 2^*M* combinations and is therefore not feasible. A better way to do it is by computing each of the *M* modes and then try to arrange them in a joint approximation distribution.
@@ -38,16 +38,16 @@ To get to the finished product, there are some steps involved, that relate it to
 ### Finished product
 The model does not need additional training objectives, supervision(labelling) or importance sampling (which is computationally expensive) and stays scalable.
 
-1. &pi;_i is the probability that the *i*-th of the *M+1* produced the sample (or rather the weight of the influence of the *i*-th component)
+1. &pi;_i is the probability that the *i*-th of the *M+1* modalities produced the sample (or rather the weight of the influence of the *i*-th component)
 1. We define the [Jensen-Shannon-Divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence) for *M+1* distributions:
 
-**JS**^(*M+1*)_&pi;({q_j(*z*) ,*j*<*M*+1)=&Sigma; j<*M+1* &pi;_j [KL](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) (q_j(*z*)|f_A({q_v(*z*)}, v<*M+1*)),
+![**JS**^(*M+1*)_&pi;({q_j(*z*) ,*j*<*M*+1)=&Sigma; j<*M+1* &pi;_j KL(q_j(*z*)|f_A({q_v(*z*)}, v<*M+1*))](https://latex.codecogs.com/gif.latex?JS%5E%7BM&plus;1%7D_%5Cpi%28%5C%7Bq_j%28z%29%5C%7D_%7Bj%3CM&plus;1%7D%29%3D%5Csum_%7Bj%3CM&plus;1%7D%5Cpi_jKL%28q_j%28z%29%7Cf_A%28%5C%7Bq_v%28z%29%5C%7D_%7Bv%3CM&plus;1%7D%29%29),
 
 where f_A is a mixture distribution.
 
 With this Jensen-Shannon-Divergence, we define a new ELBO:
 
-ÊLBO(&theta;,&phi;,*X*)=E_q_&phi;(*z*|*X*)\[log(p_&theta;(*X*|*z*))]-**JS**^(*M+1*)_&pi;({q _&phi; _*x* _*j*(*z*|*x* _*j*),*j*<*M*) p _&theta;(*z*)
+![ÊLBO(&theta;,&phi;,*X*)=E_q_&phi;(*z*|*X*)\[log(p_&theta;(*X*|*z*))\]-**JS**^(*M+1*)_&pi;({q _&phi; _*x* _*j*(*z*|*x* _*j*),*j*<*M*) p _&theta;(*z*)](https://latex.codecogs.com/gif.latex?%5Chat%7BELBO%7D%28%5Ctheta%2C%5Cphi%2CX%29%3DE_%7Bq_%5Cphi%28z%7CX%29%7D%5C%5Blog%28p_%5Ctheta%28X%7Cz%29%29%5C%5D-JS%5E%7BM&plus;1%7D_%5Cpi%28%5C%7Bq_%5Cphi%28z%7Cx_j%29%5C%7D_%7Bj%3CM%7D%2Cp_%5Ctheta%28z%29%29)
 ### Dynamic Prior
 Instead of the simple unimodal approximation q_&phi;_*j*(*z*|*x* _*j*), we can use a **multimodal dynamic prior**, that models the shared factors between the experts better: p_f(*z*|*X*)=f({q_&phi; _v(*z*|*x*_v)} *v*<*M*, p_ &theta;(*z*)), where *f* is some function that works on the q_&phi;
 
@@ -55,7 +55,7 @@ Using the **MoE** as *f* gives the finished product of the section above.
 ### Modality-specific Latent Subspaces
 An extension of the previous model extends the latent space *z* into a tuple of two parts, **S** which is distinct for each mode and every sample and **c**, which is shared among all modularities. *S* and *c* are considered independent given *X*.
 
-The extended ÊLBO(&theta;,&phi;,*X*) now is: &Sigma; *j*<*M* E_q_&phi;_*c*(*c*|*X*)\[E_q _&phi; _*s* _*j*(*s* _*j*|*x*_ *j*)\[log(p_ &theta;(*x* _*j*|*s*_ *j*,*c*))]]-&Sigma; *j*<*M* D_KL(q _&phi; _*s* _*j*(*s* _*j*|*x* _*j*)||p _&theta;(s_j))-**JS**^(*M*+1)_&pi;({q _&phi; _*c* _ *j*(*c*|*x* _*j*)} *j*<*M*,p _&theta;(*c*))
+The extended ÊLBO(&theta;,&phi;,*X*) now is:  ![&Sigma; *j*<*M* E_q_&phi;_*c*(*c*|*X*)\[E_q _&phi; _*s* _*j*(*s* _*j*|*x*_ *j*)\[log(p_ &theta;(*x* _*j*|*s*_ *j*,*c*))\]\]-&Sigma; *j*<*M* D_KL(q _&phi; _*s* _*j*(*s* _*j*|*x* _*j*)||p _&theta;(s_j))-**JS**^(*M*+1)_&pi;({q _&phi; _*c* _ *j*(*c*|*x* _*j*)} *j*<*M*,p _&theta;(*c*))](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Chat%7BELBO%7D%28%5Ctheta%2C%5Cphi%2CX%29%3D%5Csum_%7Bj%3CM%7DE_%7Bq_%7B%5Cphi%20c%7D%28c%7CX%29%7D%5C%5BE_%7Bq_%7B%5Cphi_%7Ba_j%7D%7D%28s_j%7Cx_j%29%7D%5C%5Blog%28p_%5Ctheta%28x%20_j%7Cs_j%2Cc%29%29%5D%5D-%5Csum_%7Bj%3CM%7DD_%7BKL%7D%28q_%7B%5Cphi_%7Bs_j%7D%28s_j%7Cx_j%29%7D%7C%7Cp_%5Ctheta%28s_j%29%29-JS%5E%7BM&plus;1%7D_%5Cpi%28%5C%7Bq_%7B%5Cphi%20c_j%7D%28c%7Cx_j%29%5C%7D_%7Bj%3CM%7D%2Cp_%5Ctheta%28c%29%29)
 ## Experiments
 mmJSD gets compared to [MVAE](http://arxiv.org/abs/1802.05335) and [MMVAE](https://arxiv.org/abs/1911.03393). For the discriminative capabilities, the latent representations are evaluated using linear classifiers on the unimodal and multimodal posterior approximations. To evaluate the generative performance, the generated samples are rated according to their quality and coherence across all modalities. Conditional generation should be coherent with the input data and randomly generated data should be coherent within each other. To test the coherence a classifier was used which was trained on the original unimodal training set. Precision defines the quality and the recall defines the diversity of the generated samples.
 
