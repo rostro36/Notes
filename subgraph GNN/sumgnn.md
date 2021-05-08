@@ -17,6 +17,7 @@ SumGNN consists of three modules:
 Around the drugs we want to test, extract the k-hop neighbourhood. Keep only the enclosing subgraph, nodes which are in both k-hop neighbourhoods. The embedding for sumGNN then consists of the node embedding and the one hot embedding of the distance to the interesting nodes.
 ### Knowledge summarisation
 Uses self-attention with relative position representations. With a layer-independent self-attention key *W* for every node. *r* encodes the relationship. Mask out edges which are below &gamma;.
+
 ![Self-attention](./images/graph_self_attention.PNG)
 ### Multi-channel integration
 There are many channels used and each channel is evaluated at every layer:
