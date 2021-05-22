@@ -1,6 +1,7 @@
 #https://gist.github.com/a-rodin/fef3f543412d6e1ec5b6cf55bf197d7b
 import re
 import urllib.parse
-
+#Test
 test="![$$saöldfjealfjdaasf\$asdf$$](Jannikasdfasdf)asdfsdafeasdcvfdsg"
 re.sub(pattern=r'\!\[\$\$(?P<formula>(?:(?!\$\$).)+)\$\$\]\(.*\)',repl=lambda match:('![$$'+match.group(1)+'$$]('+urllib.parse.quote_plus(match.group(1))+')'),string=test)
+
