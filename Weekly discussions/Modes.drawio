@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-05-27T11:25:08.519Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" etag="JdHtCoe8z8ALagWL0Yxz" version="14.7.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-05-28T10:22:02.354Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" etag="awsPchVnhuPMA4WaBCtE" version="14.7.2" type="github">
   <diagram id="6sZhVHqrOldBBV8Sgixf" name="Page-1">
     <mxGraphModel dx="1422" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -52,7 +52,7 @@
             <mxPoint x="320" y="250" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-1" value="Co-occurrence embeddings" style="swimlane;startSize=80;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-1" value="Co-occurrence embeddings&#xa;100 dimensional" style="swimlane;startSize=80;" parent="1" vertex="1">
           <mxGeometry x="30" y="170" width="200" height="160" as="geometry">
             <mxRectangle x="470" y="240" width="190" height="80" as="alternateBounds" />
           </mxGeometry>
@@ -68,8 +68,8 @@
         <mxCell id="dvjyUaMevtpLQw1vsttx-4" value="DNN&lt;br&gt;2 hidden layer" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="255" y="210" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-2" value="&lt;b&gt;Hierarchical embeddings&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;rotation=0;" parent="1" vertex="1">
-          <mxGeometry x="50" y="280" width="160" height="20" as="geometry" />
+        <mxCell id="dvjyUaMevtpLQw1vsttx-2" value="&lt;b&gt;Hierarchical embeddings&lt;br&gt;100 dimensional&lt;br&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;rotation=0;" parent="1" vertex="1">
+          <mxGeometry x="50" y="275" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="dvjyUaMevtpLQw1vsttx-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="dvjyUaMevtpLQw1vsttx-26" target="dvjyUaMevtpLQw1vsttx-17" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -87,10 +87,10 @@
             <mxPoint x="175" y="410" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-17" value="DNN&lt;br&gt;1 hidden layer" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-17" value="DNN&lt;br&gt;1 hidden layer&lt;br&gt;size n/2" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="255" y="370" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-26" value="&lt;b&gt;Co-occurrence embeddings&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-26" value="&lt;b&gt;Co-occurrence embeddings&lt;br&gt;100 dimensional&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="30" y="370" width="200" height="80" as="geometry" />
         </mxCell>
         <mxCell id="dvjyUaMevtpLQw1vsttx-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="dvjyUaMevtpLQw1vsttx-32" target="dvjyUaMevtpLQw1vsttx-31" edge="1">
@@ -107,10 +107,10 @@
         <mxCell id="dvjyUaMevtpLQw1vsttx-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dvjyUaMevtpLQw1vsttx-31" target="dvjyUaMevtpLQw1vsttx-35" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-31" value="hyperbolic DNN&lt;br&gt;1 hidden layer" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-31" value="hyperbolic DNN&lt;br&gt;1 hidden layer&lt;br&gt;size n/2" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="255" y="490" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-32" value="&lt;b&gt;Hierarchical embeddings&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-32" value="&lt;b&gt;Hierarchical embeddings&lt;br&gt;100 dimensional&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="30" y="490" width="200" height="80" as="geometry" />
         </mxCell>
         <mxCell id="dvjyUaMevtpLQw1vsttx-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="dvjyUaMevtpLQw1vsttx-33" target="dvjyUaMevtpLQw1vsttx-52" edge="1">
@@ -118,7 +118,7 @@
             <mxPoint x="560" y="430" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-33" value="&lt;b&gt;Co-occurrence representation&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-33" value="&lt;b&gt;Co-occurrence representation&lt;br&gt;size n/2&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="380" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dvjyUaMevtpLQw1vsttx-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="dvjyUaMevtpLQw1vsttx-35" target="dvjyUaMevtpLQw1vsttx-52" edge="1">
@@ -126,7 +126,7 @@
             <mxPoint x="560" y="510" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-35" value="&lt;b&gt;Hierarchical representation&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-35" value="&lt;b&gt;Hierarchical representation&lt;br&gt;size n/2&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="500" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="dvjyUaMevtpLQw1vsttx-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dvjyUaMevtpLQw1vsttx-52" target="wXlhwzKWuHDuEnuyMFGF-42" edge="1">
@@ -137,7 +137,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="dvjyUaMevtpLQw1vsttx-52" value="&amp;nbsp;simple DNN&lt;br&gt;1 hidden layer" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dvjyUaMevtpLQw1vsttx-52" value="&amp;nbsp;simple DNN&lt;br&gt;1 hidden layer&lt;br&gt;size n" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="510" y="430" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="dvjyUaMevtpLQw1vsttx-58" value="&lt;b&gt;Co-occurrence embedding&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -201,7 +201,7 @@
         <mxCell id="17sBmVqKZD_n01gBbcV6-12" value="&lt;b&gt;Prediction&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="900" y="80" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="17sBmVqKZD_n01gBbcV6-13" value="&lt;b&gt;Only one embedding&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="17sBmVqKZD_n01gBbcV6-13" value="&lt;b&gt;Only one embedding&lt;br&gt;100 dimensional&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="30" y="80" width="200" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="wXlhwzKWuHDuEnuyMFGF-1" target="wXlhwzKWuHDuEnuyMFGF-2" edge="1">
