@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-05-28T10:22:02.354Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" etag="awsPchVnhuPMA4WaBCtE" version="14.7.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-09T07:45:08.866Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" etag="eX3R6Hk1miYn3ZZReLNB" version="15.0.2" type="github">
   <diagram id="6sZhVHqrOldBBV8Sgixf" name="Page-1">
     <mxGraphModel dx="1422" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -211,7 +211,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-1" value="&lt;b&gt;Patient codes representation&lt;br&gt;size N&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-1" value="&lt;b&gt;Visit representation&lt;br&gt;size 2n&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="590" y="40" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="wXlhwzKWuHDuEnuyMFGF-2" target="17sBmVqKZD_n01gBbcV6-12" edge="1">
@@ -227,7 +227,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-6" value="&lt;b&gt;Patient static representation&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-6" value="&lt;b&gt;Visit other information&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="590" y="115" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-17" value="&lt;b&gt;Code&lt;br&gt;representation&lt;br&gt;size n&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -289,7 +289,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-30" value="&lt;b&gt;Patient codes representation&lt;br&gt;size N&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-30" value="&lt;b&gt;Visit representation&lt;br&gt;size 2n&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="590" y="182.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="wXlhwzKWuHDuEnuyMFGF-32" target="wXlhwzKWuHDuEnuyMFGF-28" edge="1">
@@ -305,7 +305,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-34" value="&lt;b&gt;Patient static representation&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-34" value="&lt;b&gt;Visit other information&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="590" y="257.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-35" value="&lt;b&gt;Code&lt;br&gt;representation&lt;br&gt;size n&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -367,7 +367,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-48" value="&lt;b&gt;Patient codes representation&lt;br&gt;size N&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-48" value="&lt;b&gt;Visit representation&lt;br&gt;size 2n&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="840" y="402.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="wXlhwzKWuHDuEnuyMFGF-50" target="wXlhwzKWuHDuEnuyMFGF-46" edge="1">
@@ -383,7 +383,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-52" value="&lt;b&gt;Patient static representation&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-52" value="&lt;b&gt;Visit other information&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="840" y="477.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-53" value="&lt;b&gt;Code&lt;br&gt;representation&lt;br&gt;size n&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -445,7 +445,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-66" value="&lt;b&gt;Patient codes representation&lt;br&gt;size N&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-66" value="&lt;b&gt;Visit representation size 2n&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="670" y="617.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="wXlhwzKWuHDuEnuyMFGF-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="wXlhwzKWuHDuEnuyMFGF-68" target="wXlhwzKWuHDuEnuyMFGF-64" edge="1">
@@ -461,7 +461,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="wXlhwzKWuHDuEnuyMFGF-70" value="&lt;b&gt;Patient static representation&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
+        <mxCell id="wXlhwzKWuHDuEnuyMFGF-70" value="&lt;b&gt;Visit other information&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="670" y="692.5" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
