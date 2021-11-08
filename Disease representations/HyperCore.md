@@ -14,7 +14,7 @@ Each word is put into a an embedding like Word2Vec and then the embedding is com
 ### Code-wise attention
 Each ICD-code may focus on a different word, so for each code, attention is generated as a softmax on the mean of it's descriptor per document multiplied with the CNN embedding of the words. The code-aware document representation then is found by multiplying the attention with the document representation.  
 ### Hyperbolic code embedder
-All codes are embedded in the Poincaré using the hierarchy relationship. Where directly related codes are attract each other and negative samples repel each other.
+All codes are embedded in the Poincaré ball using the hierarchy relationship. Where directly related codes are attract each other and negative samples repel each other.
 ### Hyperbolic document projector
 The document is embedded using two MLPs, one for the direction and the second for the magnitude. They start with the code-aware document representation.
 

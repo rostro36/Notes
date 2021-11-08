@@ -2,7 +2,7 @@
 ## Introduction
 This paper introduces a method to learn the underlying patients-graph given their electronic health record. The general idea is that each patient is a node and they share information based on the proximity of their embeddings. The paper analyses a way to find the adjacency matrix between them.
 ## Method
-The method learns a latent graph, given the nodes, in other word they find the best possible adjacency matrix *A*.
+The method learns a latent graph, given the nodes, in other words they find the best possible adjacency matrix *A*.
 
 Like Welling's graph autoencoder, each node gets embedded using an MLP. The weight of the edge then is computed using the sigmoid on the Euclidean distance between two embeddings.
 

@@ -25,7 +25,7 @@ The compared baselines are:
 - Dipole
 - GRAM
 And the performance with Precision or Accuracy@k is from top to down, with KAME being the best by some margin.
-### Data sufficency
+### Data sufficiency
 To test how much data the models need, the results are still computed as normal, but the codes are evaluated by the percentile in how much they have been seen. KAME performs significantly higher in the lower categories compared to the baselines and it evens out the more often the codes appear.
 ### Interpretability
 The attention part in the ancestor/knowledge vector computation allows for importance information, where the case study on one of the MIMIC-III heart patients performs as expected.
